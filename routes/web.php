@@ -25,8 +25,9 @@ use App\Http\Controllers\DepartmentController;
 */
 
 /** for side bar menu active */
-function set_active( $route ) {
-    if( is_array( $route ) ){
+function set_active($route)
+{
+    if (is_array($route)) {
         return in_array(Request::path(), $route) ? 'active' : '';
     }
     return Request::path() == $route ? 'active' : '';
@@ -36,14 +37,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::group(['middleware'=>'auth'],function()
-{
-    Route::get('home',function()
-    {
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('home', function () {
         return view('home');
     });
-    Route::get('home',function()
-    {
+    Route::get('home', function () {
         return view('home');
     });
 });
@@ -61,7 +59,7 @@ Route::controller(LoginController::class)->group(function () {
 // ----------------------------- register -------------------------//
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
-    Route::post('/register','storeUser')->name('register');    
+    Route::post('/register', 'storeUser')->name('register');
 });
 
 // -------------------------- main dashboard ----------------------//
@@ -84,7 +82,21 @@ Route::controller(UserManagementController::class)->group(function () {
 // ------------------------ setting -------------------------------//
 Route::controller(Setting::class)->group(function () {
     Route::get('setting/page', 'index')->middleware('auth')->name('setting/page');
-    Route::post('setting/address', 'address')->middleware('auth')->name('setting/address');
+    Route::get('setting/email', 'EmailSettings')->middleware('auth')->name('setting/email');
+    Route::get('setting/payment', 'Payment')->middleware('auth')->name('setting/payment');
+    Route::get('setting/sociallogin', 'SocialLogin')->middleware('auth')->name('setting/sociallogin');
+    Route::get('setting/sociallinks', 'SocialLinks')->middleware('auth')->name('setting/sociallinks');
+    Route::get('setting/seosettings', 'SeoSettings')->middleware('auth')->name('setting/seosettings');
+    Route::get('setting/othersettings', 'OtherSettings')->middleware('auth')->name('setting/othersettings');
+    Route::post('setting/updatesociallinks', 'UpdateSocialLinks')->middleware('auth')->name('setting/updatesociallinks');
+    Route::post('setting/updateseosettings', 'UpdateSeoSettings')->middleware('auth')->name('setting/updateseosettings');
+    Route::post('setting/googleanalytics', 'OtherSettingsUpdate')->middleware('auth')->name('setting/googleanalytics');
+    Route::post('setting/googleadsensecode', 'OtherSettingsUpdate')->middleware('auth')->name('setting/googleadsensecode');
+    Route::post('setting/facebookmessenger', 'OtherSettingsUpdate')->middleware('auth')->name('setting/facebookmessenger');
+    Route::post('setting/facebookpixel', 'OtherSettingsUpdate')->middleware('auth')->name('setting/facebookpixel');
+    Route::post('setting/googlerecaptcha', 'OtherSettingsUpdate')->middleware('auth')->name('setting/googlerecaptcha');
+    Route::post('setting/cookiesagreement', 'OtherSettingsUpdate')->middleware('auth')->name('setting/cookiesagreement');
+    Route::post('setting/address', 'Address')->middleware('auth')->name('setting/address');
     Route::post('setting/webupdate', 'WebsiteBasicDetailsUpdate')->middleware('auth')->name('setting/update');
 });
 

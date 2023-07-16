@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('state');
             $table->string('zip');
             $table->string('country');
+            $table->string('timezone');
+            $table->string('dateformat');
+            $table->string('timeformat');
+            $table->string('currencysymbol');
             $table->timestamps();
         });
     }
