@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('user_id')->nullable();
             $table->string('email')->nullable();
+            $table->string('google_id')->nullable();
             $table->string('join_date')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('status')->nullable();
@@ -26,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('position')->nullable();
             $table->string('department')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

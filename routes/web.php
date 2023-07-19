@@ -11,6 +11,7 @@ use App\Http\Controllers\TypeFormController;
 use App\Http\Controllers\Setting;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\DepartmentController;
 
 /*
@@ -41,12 +42,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('home', function () {
         return view('home');
     });
-    Route::get('home', function () {
+    Route::post('home', function () {
         return view('home');
     });
 });
 
 Auth::routes();
+
+Route::controller(GoogleAuthController::class)->group(function () {
+        Route::get('auth/google', 'move')->name('google_auth');
+
+        Route::get('auth/google/call-back', 'CallbackUrlGoogle')->name('google_auth_call-back');
+    }
+);
 
 // ----------------------------login ------------------------------//
 Route::controller(LoginController::class)->group(function () {
