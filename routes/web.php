@@ -48,11 +48,25 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Auth::routes();
-
+// ----------------------------social login------------------------------//
 Route::controller(GoogleAuthController::class)->group(function () {
         Route::get('auth/google', 'move')->name('google_auth');
-
         Route::get('auth/google/call-back', 'CallbackUrlGoogle')->name('google_auth_call-back');
+    }
+);
+Route::controller(FacebookAuthController::class)->group(function () {
+        Route::get('auth/facebook', 'move')->name('facebook_auth');
+        Route::get('auth/facebook/call-back', 'CallbackUrlFacebook')->name('facebook_auth_call-back');
+    }
+);
+Route::controller(TwitterAuthController::class)->group(function () {
+        Route::get('auth/twitter', 'move')->name('twitter_auth');
+        Route::get('auth/twitter/call-back', 'CallbackUrlTwitter')->name('twitter_auth_call-back');
+    }
+);
+Route::controller(LinkedinAuthController::class)->group(function () {
+        Route::get('auth/linkedin', 'move')->name('linkedin_auth');
+        Route::get('auth/linkedin/call-back', 'CallbackUrlLinkedin')->name('linkedin_auth_call-back');
     }
 );
 

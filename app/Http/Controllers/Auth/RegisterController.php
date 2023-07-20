@@ -42,5 +42,77 @@ class RegisterController extends Controller
         ]);
         Toastr::success('Create new account successfully :)', 'Success');
         return redirect('login');
+         // // Define the allowed roles
+        // $allowedRoles = ['Super Admin', 'Admin', 'Accounting', 'Student', 'Teachers'];
+
+        // // Example: Retrieve the user's role from the session
+        // // Replace this with the actual method to get the user's role from the session
+        // $userRole = $request->role_name; // Assuming 'role_name' is the key in the session holding the user's role
+
+        // // if (in_array($userRole, $allowedRoles)) {
+        // //     if ($userRole === 'Super Admin') {
+        // //         $dt       = Carbon::now();
+        // //         $todayDate = $dt->toDayDateTimeString();
+
+        // //         User::create([
+        // //             'name'      => $request->name,
+        // //             'avatar'    => $request->image,
+        // //             'email'     => $request->email,
+        // //             'join_date' => $todayDate,
+        // //             'role_name' => $request->role_name,
+        // //             'password'  => Hash::make($request->password),
+        // //         ]);
+        // //         Toastr::success('Create new account successfully :)', 'Success');
+        // //         return redirect('login');
+        // //     } elseif ($userRole === 'Admin') {
+        // //         $dt       = Carbon::now();
+        // //         $todayDate = $dt->toDayDateTimeString();
+
+        // //         User::create([
+        // //             'name'      => $request->name,
+        // //             'avatar'    => $request->image,
+        // //             'email'     => $request->email,
+        // //             'join_date' => $todayDate,
+        // //             'role_name' => $request->role_name,
+        // //             'password'  => Hash::make($request->password),
+        // //         ]);
+        // //         Toastr::success('Create new account successfully :)', 'Success');
+        // //         return redirect('login');
+        // //     } elseif ($userRole === 'Accounting') {
+        // //         $dt       = Carbon::now();
+        // //         $todayDate = $dt->toDayDateTimeString();
+
+        // //         User::create([
+        // //             'name'      => $request->name,
+        // //             'avatar'    => $request->image,
+        // //             'email'     => $request->email,
+        // //             'join_date' => $todayDate,
+        // //             'role_name' => $request->role_name,
+        // //             'password'  => Hash::make($request->password),
+        // //         ]);
+        // //         Toastr::success('Create new account successfully :)', 'Success');
+        // //         return redirect('login');
+        // //     } elseif ($userRole === 'Student') {
+        // //         $dt       = Carbon::now();
+        // //         $todayDate = $dt->toDayDateTimeString();
+
+        // //         Student::create([
+        // //             'name'      => $request->name,
+        // //             'avatar'    => $request->image,
+        // //             'email'     => $request->email,
+        // //             'join_date' => $todayDate,
+        // //             'role_name' => $request->role_name,
+        // //             'password'  => Hash::make($request->password),
+        // //         ]);
+        // //         Toastr::success('Create new account successfully :)', 'Success');
+        // //         return redirect('login');
+        // //     } elseif ($userRole === 'Teachers') {
+        // //         // Content for Teachers
+        // //         echo "<p>Welcome, Teachers!</p>";
+        // //     }
+        // // } else {
+        // //     // Content for other roles not listed in $allowedRoles
+        // //     echo "<p>Welcome, User!</p>";
+        // // }
     }
 }

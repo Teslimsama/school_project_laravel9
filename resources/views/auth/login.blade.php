@@ -39,9 +39,9 @@
         </div>
         <div class="social-login">
             <a href="{{ route('google_auth') }}"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="{{ route('facebook_auth') }}"><i class="fab fa-facebook-f"></i></a>
+            <a href="{{ route('twitter_auth') }}"><i class="fab fa-twitter"></i></a>
+            <a href="{{ route('linkedin_auth') }}"><i class="fab fa-linkedin-in"></i></a>
         </div>
     </div>
 </div>
