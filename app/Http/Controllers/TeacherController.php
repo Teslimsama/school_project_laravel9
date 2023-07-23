@@ -62,7 +62,7 @@ class TeacherController extends Controller
             $dt        = Carbon::now();
             $todayDate = $dt->toDayDateTimeString();
             
-                 
+                //  teslim please remove this when needed 
             User::create([
                 'name'      => $request->full_name,
                 'email'     => $request->email,
@@ -70,6 +70,7 @@ class TeacherController extends Controller
                 'role_name' => 'Teacher',
                 'password'  => Hash::make($request->password),
             ]);
+            // stop
             $user_id = DB::table('users')->select('user_id')->orderBy('id','DESC')->first();
             
             $saveRecord = new Teacher;

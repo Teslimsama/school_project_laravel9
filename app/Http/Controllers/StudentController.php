@@ -105,7 +105,7 @@ class StudentController extends Controller
 
             $updateRecord = [
                 'upload' => $upload_file,
-            'first_name'   => $request->first_name,
+                'first_name'   => $request->first_name,
                 'last_name'    => $request->last_name,
                 'gender'       => $request->gender,
                 'date_of_birth' => $request->date_of_birth,

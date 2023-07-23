@@ -93,8 +93,8 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="subjects.html">Subject List</a></li>
-                                <li><a href="add-subject.html">Subject Add</a></li>
+                                <li><a href="{{route('subject/list/page')}}">Subject List</a></li>
+                                <li><a href="{{route('subject/add/page')}}">Subject Add</a></li>
                             </ul>
                         </li>
                         
@@ -213,8 +213,8 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="subjects.html">Subject List</a></li>
-                                <li><a href="add-subject.html">Subject Add</a></li>
+                                <li><a href="{{route('subject/list/page')}}">Subject List</a></li>
+                                <li><a href="{{route('subject/add/page')}}">Subject Add</a></li>
                                 
                             </ul>
                         </li>
@@ -319,8 +319,8 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="subjects.html">Subject List</a></li>
-                                <li><a href="add-subject.html">Subject Add</a></li>
+                                <li><a href="{{route('subject/list/page')}}">Subject List</a></li>
+                                <li><a href="{{route('subject/add/page')}}">Subject Add</a></li>
                             </ul>
                         </li>
 
@@ -389,8 +389,8 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="subjects.html">Subject List</a></li>
-                                <li><a href="add-subject.html">Subject Add</a></li>
+                                <li><a href="{{route('subject/list/page')}}">Subject List</a></li>
+                                <li><a href="{{route('subject/add/page')}}">Subject Add</a></li>
                                 
                             </ul>
                         </li>

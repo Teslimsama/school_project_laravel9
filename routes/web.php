@@ -13,6 +13,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\subjectController;
+use App\Http\Controllers\blankPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -153,4 +155,18 @@ Route::controller(DepartmentController::class)->group(function () {
     Route::post('department/update', 'departmentUpdate')->middleware('auth')->name('department/update'); // page add department
     Route::post('department/delete', 'deleteDepartment')->middleware('auth')->name('department/delete'); // page add department
     Route::get('department/edit/{id}', 'editDepartment')->middleware('auth'); // page edit  department
+});
+
+Route::controller(subjectController::class)->group(function () {
+    Route::get('subject/list/page', 'listSubject')->middleware('auth')->name('subject/list/page'); // page list department
+    Route::post('subject/delete', 'subjectDelete')->name('subject/delete'); // delete record teacher
+    Route::get('subject/add/page', 'subjectIndex')->middleware('auth')->name('subject/add/page'); // page add department
+    Route::post('subject/add/save', 'saveSubject')->middleware('auth')->name('subject/add/save'); // page add department
+    Route::post('subject/update', 'subjectUpdate')->middleware('auth')->name('subject/update'); // page add department
+    Route::get('subject/edit/{id}', 'editSubject')->middleware('auth'); // page edit  department
+    
+});
+Route::controller(blankPageController::class)->group(function () {
+        Route::get('blank/page', 'LetsGo')->name('blank/page');
+    
 });

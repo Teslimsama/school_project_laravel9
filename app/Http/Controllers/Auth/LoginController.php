@@ -71,7 +71,6 @@ class LoginController extends Controller
             $email     = $request->email;
             $password  = $request->password;
 
-            // dd(Auth::attempt(['email' => $email, 'password' => $password]));;
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
                 /** get session */
                 $user = Auth::User();
@@ -85,6 +84,7 @@ class LoginController extends Controller
                 Session::put('avatar', $user->avatar);
                 Session::put('position', $user->position);
                 Session::put('department', $user->department);
+                // remove the code below if wantsellabeg
 
                 // Define the allowed roles
                 $allowedRoles = ['Super Admin', 'Admin', 'Accounting', 'Student', 'Teachers'];
@@ -111,7 +111,7 @@ class LoginController extends Controller
                         return redirect()->intended('teacher/dashboard');
                     }
                 }
-
+// stop
 
                 // Toastr::success('Login successfully :)', 'Success');
                 // return redirect()->intended('home');
