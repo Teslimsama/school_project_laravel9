@@ -25,11 +25,11 @@
                                 <div class="col">
                                     <h3 class="page-title">Users List</h3>
                                 </div>
-                                <div class="col-auto text-end float-end ms-auto download-grp">
+                                {{-- <div class="col-auto text-end float-end ms-auto download-grp">
                                     <a href="add-time-table.html" class="btn btn-primary">
                                         <i class="fas fa-plus"></i>
                                     </a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 

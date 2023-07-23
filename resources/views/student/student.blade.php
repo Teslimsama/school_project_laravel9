@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 @section('content')
     <div class="page-wrapper">
@@ -52,10 +51,14 @@
                                         <h3 class="page-title">Students</h3>
                                     </div>
                                     <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="{{ route('student/list') }}" class="btn btn-outline-gray me-2 active"><i class="feather-list"></i></a>
-                                        <a href="{{ route('student/grid') }}" class="btn btn-outline-gray me-2"><i class="feather-grid"></i></a>
-                                        <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i> Download</a>
-                                        <a href="{{ route('student/add/page') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                                        <a href="{{ route('student/list') }}" class="btn btn-outline-gray me-2 active"><i
+                                                class="feather-list"></i></a>
+                                        <a href="{{ route('student/grid') }}" class="btn btn-outline-gray me-2"><i
+                                                class="feather-grid"></i></a>
+                                        <a href="#" class="btn btn-outline-primary me-2"><i
+                                                class="fas fa-download"></i> Download</a>
+                                        <a href="{{ route('student/add/page') }}" class="btn btn-primary"><i
+                                                class="fas fa-plus"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -81,40 +84,46 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($studentList as $key=>$list )
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </td>
-                                            <td>STD{{ ++$key }}</td>
-                                            <td hidden class="id">{{ $list->id }}</td>
-                                            <td hidden class="avatar">{{ $list->upload }}</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a href="{{ url('student/profile/'.$list->id) }}"class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle" src="{{ Storage::url('student-photos/'.$list->upload) }}" alt="User Image">
-                                                    </a>
-                                                    <a href="{{ url('student/profile/'.$list->id) }}">{{ $list->first_name }} {{ $list->last_name }}</a>
-                                                </h2>
-                                            </td>
-                                            <td>{{ $list->class }} {{ $list->section }}</td>
-                                            <td>{{ $list->date_of_birth }}</td>
-                                            <td>Soeng Soeng</td>
-                                            <td>{{ $list->phone_number }}</td>
-                                            <td>110 Sen Sok Steet,PP</td>
-                                            <td class="text-end">
-                                                <div class="actions">
-                                                    <a href="{{ url('student/edit/'.$list->id) }}" class="btn btn-sm bg-danger-light">
-                                                        <i class="feather-edit"></i>
-                                                    </a>
-                                                    <a class="btn btn-sm bg-danger-light student_delete" data-bs-toggle="modal" data-bs-target="#studentUser">
-                                                        <i class="feather-trash-2 me-1"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @foreach ($studentList as $key => $list)
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check check-tables">
+                                                        <input class="form-check-input" type="checkbox" value="something">
+                                                    </div>
+                                                </td>
+                                                <td>STD{{ ++$key }}</td>
+                                                <td hidden class="id">{{ $list->id }}</td>
+                                                <td hidden class="avatar">{{ $list->upload }}</td>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a
+                                                            href="{{ url('student/profile/' . $list->id) }}"class="avatar avatar-sm me-2">
+                                                            <img class="avatar-img rounded-circle"
+                                                                src="{{ Storage::url('student-photos/' . $list->upload) }}"
+                                                                alt="User Image">
+                                                        </a>
+                                                        <a href="{{ url('student/profile/' . $list->id) }}">{{ $list->first_name }}
+                                                            {{ $list->last_name }}</a>
+                                                    </h2>
+                                                </td>
+                                                <td>{{ $list->class }} {{ $list->section }}</td>
+                                                <td>{{ $list->date_of_birth }}</td>
+                                                <td>Soeng Soeng</td>
+                                                <td>{{ $list->phone_number }}</td>
+                                                <td>110 Sen Sok Steet,PP</td>
+                                                <td class="text-end">
+                                                    <div class="actions">
+                                                        <a href="{{ url('student/edit/' . $list->id) }}"
+                                                            class="btn btn-sm bg-danger-light">
+                                                            <i class="feather-edit"></i>
+                                                        </a>
+                                                        <a class="btn btn-sm bg-danger-light student_delete"
+                                                            data-bs-toggle="modal" data-bs-target="#studentUser">
+                                                            <i class="feather-trash-2 me-1"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -131,7 +140,7 @@
             <div class="modal-content doctor-profile">
                 <div class="modal-header pb-0 border-bottom-0  justify-content-end">
                     <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close"><i
-                        class="feather-x-circle"></i>
+                            class="feather-x-circle"></i>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -154,17 +163,15 @@
             </div>
         </div>
     </div>
-    @section('script')
-
+@section('script')
     {{-- delete js --}}
     <script>
-        $(document).on('click','.student_delete',function()
-        {
+        $(document).on('click', '.student_delete', function() {
             var _this = $(this).parents('tr');
             $('.e_id').val(_this.find('.id').text());
             $('.e_avatar').val(_this.find('.avatar').text());
         });
     </script>
-    @endsection
+@endsection
 
 @endsection

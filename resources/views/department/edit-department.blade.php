@@ -1,8 +1,7 @@
-
 @extends('layouts.master')
 @section('content')
-{{-- message --}}
-{!! Toastr::message() !!}
+    {{-- message --}}
+    {!! Toastr::message() !!}
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -10,7 +9,7 @@
                     <div class="col">
                         <h3 class="page-title">Edit Department</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="departments.html">Department</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('department/list/page') }}">Department</a></li>
                             <li class="breadcrumb-item active">Edit Department</li>
                         </ul>
                     </div>
@@ -20,40 +19,22 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            <form action="{{ route('department/update') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <h5 class="form-title"><span>Department Details</span></h5>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
-                                            <label>Department ID <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="PRE1534">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-4">
-                                        <div class="form-group local-forms">
                                             <label>Department Name <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="MCA">
+                                            <input type="text" class="form-control" name="name" value="{{ $departmentEdit->name }}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Head of Department <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="Lois A">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-4">
-                                        <div class="form-group local-forms calendar-icon">
-                                            <label>Department Start Date <span class="login-danger">*</span></label>
-                                            <input class="form-control datetimepicker" type="text"
-                                                placeholder="DD-MM-YYYY">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-4">
-                                        <div class="form-group local-forms">
-                                            <label>No of Students <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" value="200">
+                                            <input type="text" class="form-control" name="hod" value="{{ $departmentEdit->hod}}">
                                         </div>
                                     </div>
                                     <div class="col-12">

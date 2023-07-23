@@ -105,6 +105,18 @@ class StudentController extends Controller
 
             $updateRecord = [
                 'upload' => $upload_file,
+            'first_name'   => $request->first_name,
+                'last_name'    => $request->last_name,
+                'gender'       => $request->gender,
+                'date_of_birth' => $request->date_of_birth,
+                'roll'         => $request->roll,
+                'blood_group'  => $request->blood_group,
+                'religion'     => $request->religion,
+                'email'       => $request->email,
+                'class'        => $request->class,
+                'section'      => $request->section,
+                'admission_id' => $request->admission_id,
+                'phone_number' => $request->phone_number,
             ];
             Student::where('id', $request->id)->update($updateRecord);
 

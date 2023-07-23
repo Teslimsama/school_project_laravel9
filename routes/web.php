@@ -147,6 +147,10 @@ Route::controller(TeacherController::class)->group(function () {
 
 // ----------------------- department -----------------------------//
 Route::controller(DepartmentController::class)->group(function () {
+    Route::get('department/list/page', 'listDepartment')->middleware('auth')->name('department/list/page'); // page list department
     Route::get('department/add/page', 'indexDepartment')->middleware('auth')->name('department/add/page'); // page add department
-    Route::get('department/edit/page', 'editDepartment')->middleware('auth')->name('department/edit/page'); // page add department
+    Route::post('department/add/save', 'saveDepartment')->middleware('auth')->name('department/add/save'); // page add department
+    Route::post('department/update', 'departmentUpdate')->middleware('auth')->name('department/update'); // page add department
+    Route::post('department/delete', 'deleteDepartment')->middleware('auth')->name('department/delete'); // page add department
+    Route::get('department/edit/{id}', 'editDepartment')->middleware('auth'); // page edit  department
 });
