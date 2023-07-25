@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/icons/flags/flags.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap-datetimepicker.min.cs') }}s">
+    <link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('assets/plugins/fullcalendar/fullcalendar.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/simple-calendar/simple-calendar.css') }}">
@@ -196,6 +197,9 @@
     <script src="{{ URL::to('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ URL::to('assets/plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ URL::to('assets/plugins/select2/js/select2.min.js') }}"></script>
+    <script src="{{ URL::to('assets/js/moment.min.js') }}"></script>
+    <script src="{{ URL::to('assets/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ URL::to('assets/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
     {{-- <script src="{{ URL::to('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js') }}"></script> --}}
     <script src="{{ URL::to('assets/js/ckeditor.js') }}"></script>
     <script src="{{ URL::to('assets/js/script.js') }}"></script>

@@ -71,7 +71,7 @@
                                     <a href="{{ route('teacher/add/page') }}"
                                         class="{{ set_active(['teacher/add/page']) }}">Teacher Add
                                     </a>
-                                    </li>
+                                </li>
                             </ul>
                         </li>
 
@@ -81,10 +81,11 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('department/list/page') }}" class="{{ set_active(['department/list/page']) }}">Department List</a></li>
+                                <li><a href="{{ route('department/list/page') }}"
+                                        class="{{ set_active(['department/list/page']) }}">Department List</a></li>
                                 <li><a href="{{ route('department/add/page') }}"
                                         class="{{ set_active(['department/add/page']) }}">Department Add</a></li>
-                                
+
                             </ul>
                         </li>
                         <li class="submenu">
@@ -93,11 +94,11 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{route('subject/list/page')}}">Subject List</a></li>
-                                <li><a href="{{route('subject/add/page')}}">Subject Add</a></li>
+                                <li><a href="{{ route('subject/list/page') }}">Subject List</a></li>
+                                <li><a href="{{ route('subject/add/page') }}">Subject Add</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="menu-title">
                             <span>Management</span>
                         </li>
@@ -122,7 +123,7 @@
                             <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li>
-                            <a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                         <li>
                             <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
@@ -201,10 +202,11 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('department/list/page') }}" class="{{ set_active(['department/list/page']) }}">Department List</a></li>
+                                <li><a href="{{ route('department/list/page') }}"
+                                        class="{{ set_active(['department/list/page']) }}">Department List</a></li>
                                 <li><a href="{{ route('department/add/page') }}"
                                         class="{{ set_active(['department/add/page']) }}">Department Add</a></li>
-                               
+
                             </ul>
                         </li>
                         <li class="submenu">
@@ -213,12 +215,12 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{route('subject/list/page')}}">Subject List</a></li>
-                                <li><a href="{{route('subject/add/page')}}">Subject Add</a></li>
-                                
+                                <li><a href="{{ route('subject/list/page') }}">Subject List</a></li>
+                                <li><a href="{{ route('subject/add/page') }}">Subject Add</a></li>
+
                             </ul>
                         </li>
-                        
+
                         <li class="menu-title">
                             <span>Management</span>
                         </li>
@@ -231,7 +233,7 @@
                                 <li><a href="fees-collections.html">Fees Collection</a></li>
                                 <li><a href="expenses.html">Expenses</a></li>
                                 <li><a href="salary.html">Salary</a></li>
-                                
+
                             </ul>
                         </li>
                         <li>
@@ -244,7 +246,7 @@
                             <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li>
-                            <a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                         <li>
                             <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
@@ -271,8 +273,6 @@
                             </a>
                         </li>
 
-                        
-
                         <li class="submenu">
                             <a href="#"><i class="fas fa-file-invoice-dollar"></i>
                                 <span> Accounts</span>
@@ -282,7 +282,7 @@
                                 <li><a href="fees-collections.html">Fees Collection</a></li>
                                 <li><a href="expenses.html">Expenses</a></li>
                                 <li><a href="salary.html">Salary</a></li>
-                                
+
                             </ul>
                         </li>
                         <li>
@@ -292,7 +292,7 @@
                             <a href="fees.html"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
                         <li>
-                            <a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                     </ul>
                 </div>
@@ -310,7 +310,7 @@
                         <li class="{{ set_active(['student/dashboard']) }}">
                             <a
                                 href="{{ route('student/dashboard') }}"class="{{ set_active(['student/dashboard']) }}">
-                                <i class="feather-grid"></i><span>Student Dashboard</span></a>
+                                <i class="feather-grid"></i><span>Dashboard</span></a>
                         </li>
 
                         <li class="submenu">
@@ -319,8 +319,8 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{route('subject/list/page')}}">Subject List</a></li>
-                                <li><a href="{{route('subject/add/page')}}">Subject Add</a></li>
+                                <li><a href="{{ route('subject/list/page') }}">Subject List</a></li>
+                                <li><a href="{{ route('subject/add/page') }}">Subject Add</a></li>
                             </ul>
                         </li>
 
@@ -334,7 +334,7 @@
                             <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li>
-                            <a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                         <li>
                             <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
@@ -359,7 +359,7 @@
 
                             <a
                                 href="{{ route('teacher/dashboard') }}"class="{{ set_active(['teacher/dashboard']) }}">
-                                <i class="feather-grid"></i><span>Teacher Dashboard</span>
+                                <i class="feather-grid"></i><span>Dashboard</span>
                             </a>
                         </li>
 
@@ -373,14 +373,6 @@
                                 <li><a href="{{ route('student/list') }}"
                                         class="{{ set_active(['student/list', 'student/grid']) }}">Student List</a>
                                 </li>
-                                <li><a href="{{ route('student/add/page') }}"
-                                        class="{{ set_active(['student/add/page']) }}">Student Add</a></li>
-                                <li><a class="{{ request()->is('student/edit/*') ? 'active' : '' }}">Student Edit</a>
-                                </li>
-                                <li><a href=""
-                                        class="{{ request()->is('student/profile/*') ? 'active' : '' }}">Student
-                                        View</a>
-                                </li>
                             </ul>
                         </li>
                         <li class="submenu">
@@ -389,9 +381,7 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{route('subject/list/page')}}">Subject List</a></li>
-                                <li><a href="{{route('subject/add/page')}}">Subject Add</a></li>
-                                
+                                <li><a href="{{ route('subject/list/page') }}">Subject List</a></li>
                             </ul>
                         </li>
 
@@ -402,7 +392,7 @@
                             <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li>
-                            <a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                         <li>
                             <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>

@@ -74,7 +74,6 @@ class subjectController extends Controller
     {
         DB::beginTransaction();
         try {
-// echo $request->id;
             if (!empty($request->id)) {
                 Subject::destroy($request->id);
 

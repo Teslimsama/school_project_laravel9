@@ -15,6 +15,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\blankPageController;
+use App\Http\Controllers\FullCalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -157,6 +158,7 @@ Route::controller(DepartmentController::class)->group(function () {
     Route::get('department/edit/{id}', 'editDepartment')->middleware('auth'); // page edit  department
 });
 
+// ----------------------- subject -----------------------------//
 Route::controller(subjectController::class)->group(function () {
     Route::get('subject/list/page', 'listSubject')->middleware('auth')->name('subject/list/page'); // page list department
     Route::post('subject/delete', 'subjectDelete')->name('subject/delete'); // delete record teacher
@@ -166,6 +168,18 @@ Route::controller(subjectController::class)->group(function () {
     Route::get('subject/edit/{id}', 'editSubject')->middleware('auth'); // page edit  department
     
 });
+
+// ----------------------- event -----------------------------//
+Route::controller(FullCalendarController::class)->group(function () {
+    Route::get('/getevent', 'getEvent')->name('getevent');
+    Route::post('/createevent', 'createEvent')->name('createevent');
+    Route::post('/deleteevent', 'deleteEvent')->name('deleteevent');
+    Route::post('updateevent', 'updateEvent')->name('updateevent');
+
+
+});
+
+// ----------------------- blank page -----------------------------//
 Route::controller(blankPageController::class)->group(function () {
         Route::get('blank/page', 'LetsGo')->name('blank/page');
     
