@@ -15,7 +15,11 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\blankPageController;
+use App\Http\Controllers\ExpensesController;
+use App\Http\Controllers\FeeCollectionController;
+use App\Http\Controllers\FeesController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\SalaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,22 +56,26 @@ Route::group(['middleware' => 'auth'], function () {
 
 Auth::routes();
 // ----------------------------social login------------------------------//
-Route::controller(GoogleAuthController::class)->group(function () {
+Route::controller(GoogleAuthController::class)->group(
+    function () {
         Route::get('auth/google', 'move')->name('google_auth');
         Route::get('auth/google/call-back', 'CallbackUrlGoogle')->name('google_auth_call-back');
     }
 );
-Route::controller(FacebookAuthController::class)->group(function () {
+Route::controller(FacebookAuthController::class)->group(
+    function () {
         Route::get('auth/facebook', 'move')->name('facebook_auth');
         Route::get('auth/facebook/call-back', 'CallbackUrlFacebook')->name('facebook_auth_call-back');
     }
 );
-Route::controller(TwitterAuthController::class)->group(function () {
+Route::controller(TwitterAuthController::class)->group(
+    function () {
         Route::get('auth/twitter', 'move')->name('twitter_auth');
         Route::get('auth/twitter/call-back', 'CallbackUrlTwitter')->name('twitter_auth_call-back');
     }
 );
-Route::controller(LinkedinAuthController::class)->group(function () {
+Route::controller(LinkedinAuthController::class)->group(
+    function () {
         Route::get('auth/linkedin', 'move')->name('linkedin_auth');
         Route::get('auth/linkedin/call-back', 'CallbackUrlLinkedin')->name('linkedin_auth_call-back');
     }
@@ -166,7 +174,7 @@ Route::controller(subjectController::class)->group(function () {
     Route::post('subject/add/save', 'saveSubject')->middleware('auth')->name('subject/add/save'); // page add department
     Route::post('subject/update', 'subjectUpdate')->middleware('auth')->name('subject/update'); // page add department
     Route::get('subject/edit/{id}', 'editSubject')->middleware('auth'); // page edit  department
-    
+
 });
 
 // ----------------------- event -----------------------------//
@@ -175,12 +183,33 @@ Route::controller(FullCalendarController::class)->group(function () {
     Route::post('/createevent', 'createEvent')->name('createevent');
     Route::post('/deleteevent', 'deleteEvent')->name('deleteevent');
     Route::post('updateevent', 'updateEvent')->name('updateevent');
-
-
 });
 
 // ----------------------- blank page -----------------------------//
 Route::controller(blankPageController::class)->group(function () {
-        Route::get('blank/page', 'LetsGo')->name('blank/page');
-    
+    Route::get('blank/page', 'LetsGo')->name('blank/page');
+});
+Route::controller(FeeCollectionController::class)->group(function () {
+    Route::get('blank/page', 'LetsGo')->name('blank/page');
+});
+
+Route::controller(FeesController::class)->group(function () {
+    Route::get('fees/page', 'Fees')->name('fees/page');
+    Route::get('fees/page/add', 'addFees')->name('fees/page/add');
+    Route::post('fees/save', 'saveFees')->name('fees/save');
+    Route::post('fees/update', 'updateFees')->name('fees/update');
+    Route::post('fees/delete', 'deleteFees')->name('fees/delete');
+    Route::get('fees/edit/{id}', 'editFees')->middleware('auth'); // page edit  department
+
+});
+Route::controller(ExpensesController::class)->group(function () {
+    Route::get('expenses/page', 'Expenses')->name('expenses/page');
+    Route::get('expenses/add/page', 'expensesAdd')->middleware('auth')->name('expenses/add/page'); // page expenses
+    Route::post('expenses/add/save', 'expensesSave')->name('expenses/add/save'); // save record expenses
+    Route::get('expenses/edit/{id}', 'expensesEdit'); // view for edit
+    Route::post('expenses/update', 'expensesUpdate')->name('expenses/update'); // update record expenses
+    Route::post('expenses/delete', 'expensesDelete')->name('expenses/delete'); // delete record expenses
+});
+Route::controller(SalaryController::class)->group(function () {
+    Route::get('blank/page', 'LetsGo')->name('blank/page');
 });
