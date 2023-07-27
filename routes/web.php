@@ -185,12 +185,13 @@ Route::controller(FullCalendarController::class)->group(function () {
     Route::post('updateevent', 'updateEvent')->name('updateevent');
 });
 
-// ----------------------- blank page -----------------------------//
-Route::controller(blankPageController::class)->group(function () {
-    Route::get('blank/page', 'LetsGo')->name('blank/page');
-});
 Route::controller(FeeCollectionController::class)->group(function () {
-    Route::get('blank/page', 'LetsGo')->name('blank/page');
+    Route::get('feescollection/page', 'Feescollection')->name('feescollection/page');
+    Route::get('feescollection/page/add', 'addFeescollection')->name('feescollection/page/add');
+    Route::post('feescollection/save', 'saveFeescollection')->name('feescollection/save');
+    Route::post('feescollection/update', 'updateFeescollection')->name('feescollection/update');
+    Route::post('feescollection/delete', 'deleteFeescollection')->name('feescollection/delete');
+    Route::get('feescollection/edit/{id}', 'editFeescollection')->middleware('auth');
 });
 
 Route::controller(FeesController::class)->group(function () {
@@ -211,5 +212,26 @@ Route::controller(ExpensesController::class)->group(function () {
     Route::post('expenses/delete', 'expensesDelete')->name('expenses/delete'); // delete record expenses
 });
 Route::controller(SalaryController::class)->group(function () {
-    Route::get('blank/page', 'LetsGo')->name('blank/page');
+    Route::get('salary/page', 'salary')->name('salary/page');
+    Route::get('salary/add/page', 'salaryAdd')->middleware('auth')->name('salary/add/page'); // page expenses
+    Route::post('salary/add/save', 'salarySave')->name('salary/add/save'); // save record salary
+    Route::get('salary/edit/{id}', 'salaryEdit'); // view for edit
+    Route::post('salary/update', 'salaryUpdate')->name('salary/update'); // update record expenses
+    Route::post('salary/delete', 'salaryDelete')->name('salary/delete'); // delete record salary
 });
+
+    // ----------------------- blank page -----------------------------//
+    Route::controller(examController::class)->group(function () {
+        Route::get('exam/page', 'LetsGo')->name('exam/page');
+    });
+    // ----------------------- blank page -----------------------------//
+    Route::controller(timetableController::class)->group(function () {
+        Route::get('timetable/page', 'LetsGo')->name('timetable/page');
+    });
+    Route::controller(libraryController::class)->group(function () {
+        Route::get('library/page', 'LetsGo')->name('library/page');
+    });
+    // ----------------------- blank page -----------------------------//
+    Route::controller(blankPageController::class)->group(function () {
+        Route::get('blank/page', 'LetsGo')->name('blank/page');
+    });
