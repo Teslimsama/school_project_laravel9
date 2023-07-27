@@ -108,9 +108,9 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('feescollection/page') }}" class="{{ set_active(['feescollection/page']) }}">Fees Collection</a></li>
-                                <li><a href="{{ route('expenses/page') }}" class="{{ set_active(['expenses/page']) }}">Expenses</a></li>
-                                <li><a href="{{ route('salary/page') }}" class="{{ set_active(['salary/page']) }}">Salary</a></li>
+                                <li><a href="{{ route('feescollection/page') }}" class="{{ set_active(['feescollection/page', 'feescollection/page/add']) }} {{ request()->is('feescollection/edit/*') ? 'active' : '' }}">Fees Collection</a></li>
+                                <li><a href="{{ route('expenses/page') }}" class="{{ set_active(['expenses/page','expenses/add/page']) }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}">Expenses</a></li>
+                                <li><a href="{{ route('salary/page' ) }}" class="{{ set_active(['salary/page', 'salary/add/page']) }} {{ request()->is('salary/edit/*') ? 'active' : '' }}">Salary</a></li>
                             </ul>
                         </li>
                         

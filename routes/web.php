@@ -19,6 +19,7 @@ use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\FeeCollectionController;
 use App\Http\Controllers\FeesController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\SalaryController;
 
 /*
@@ -39,6 +40,16 @@ function set_active($route)
         return in_array(Request::path(), $route) ? 'active' : '';
     }
     return Request::path() == $route ? 'active' : '';
+}
+// for set status color
+function status($status){
+    if( $status ===  'Paid'){
+        return 'success';
+    }elseif($status ===  'Unpaid'){
+        return 'danger';
+    }else{
+        return 'warning';
+    }
 }
 
 Route::get('/', function () {
@@ -187,11 +198,11 @@ Route::controller(FullCalendarController::class)->group(function () {
 
 Route::controller(FeeCollectionController::class)->group(function () {
     Route::get('feescollection/page', 'Feescollection')->name('feescollection/page');
-    Route::get('feescollection/page/add', 'addFeescollection')->name('feescollection/page/add');
-    Route::post('feescollection/save', 'saveFeescollection')->name('feescollection/save');
-    Route::post('feescollection/update', 'updateFeescollection')->name('feescollection/update');
-    Route::post('feescollection/delete', 'deleteFeescollection')->name('feescollection/delete');
-    Route::get('feescollection/edit/{id}', 'editFeescollection')->middleware('auth');
+    Route::get('feescollection/page/add', 'FeescollectionAdd')->name('feescollection/page/add');
+    Route::post('feescollection/save', 'FeescollectionSave')->name('feescollection/save');
+    Route::post('feescollection/update', 'FeescollectionUpdate')->name('feescollection/update');
+    Route::post('feescollection/delete', 'FeescollectionDelete')->name('feescollection/delete');
+    Route::get('feescollection/edit/{id}', 'FeescollectionEdit')->middleware('auth');
 });
 
 Route::controller(FeesController::class)->group(function () {
@@ -221,14 +232,14 @@ Route::controller(SalaryController::class)->group(function () {
 });
 
     // ----------------------- blank page -----------------------------//
-    Route::controller(examController::class)->group(function () {
+    Route::controller(ExamController::class)->group(function () {
         Route::get('exam/page', 'LetsGo')->name('exam/page');
     });
     // ----------------------- blank page -----------------------------//
-    Route::controller(timetableController::class)->group(function () {
+    Route::controller(TimeTableController::class)->group(function () {
         Route::get('timetable/page', 'LetsGo')->name('timetable/page');
     });
-    Route::controller(libraryController::class)->group(function () {
+    Route::controller(LibraryController::class)->group(function () {
         Route::get('library/page', 'LetsGo')->name('library/page');
     });
     // ----------------------- blank page -----------------------------//
