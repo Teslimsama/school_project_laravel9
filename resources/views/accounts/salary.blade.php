@@ -8,13 +8,15 @@
                     <div class="col">
                         <h3 class="page-title">Salary</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('salary/page') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Salary</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            {{-- message --}}
+            {!! Toastr::message() !!}
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card card-table">
@@ -28,7 +30,7 @@
                                     <div class="col-auto text-end float-end ms-auto download-grp">
                                         <a href="#" class="btn btn-outline-primary me-2"><i
                                                 class="fas fa-download"></i> Download</a>
-                                        <a href="add-salary.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                                        <a href="{{ route('salary/add/page') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -40,190 +42,34 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Gender</th>
-                                            <th>Joining Date</th>
+                                            <th>Date Paid</th>
                                             <th>Amount</th>
                                             <th class="text-end">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>PRE2209</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-01.jpg" alt="User Image"></a>
-                                                    <a>Aaliyah</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>17 Aug 2020</td>
-                                            <td>$320</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2213</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-02.jpg" alt="User Image"></a>
-                                                    <a>Malynne</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>05 Aug 2020</td>
-                                            <td>$536</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2143</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-03.jpg" alt="User Image"></a>
-                                                    <a>Levell Scott</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>04 Sept 2020</td>
-                                            <td>$378</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2431</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-04.jpg" alt="User Image"></a>
-                                                    <a>Minnie</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>17 Sept 2020</td>
-                                            <td>$246</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-danger">Unpaid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE1534</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-05.jpg" alt="User Image"></a>
-                                                    <a>Lois A</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>02 Oct 2020</td>
-                                            <td>$560</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-danger">Unpaid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2153</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-06.jpg" alt="User Image"></a>
-                                                    <a>Calvin</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>28 Oct 2020</td>
-                                            <td>$236</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-danger">Unpaid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE1252</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-07.jpg" alt="User Image"></a>
-                                                    <a>Joe Kelley</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>17 Oct 2020</td>
-                                            <td>$237</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE1434</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-08.jpg" alt="User Image"></a>
-                                                    <a>Vincent</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>05 Nov 2020</td>
-                                            <td>$567</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2345</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-09.jpg" alt="User Image"></a>
-                                                    <a>Kozma  Tatari</a>
-                                                </h2>
-                                            </td>
-                                            <td>Female</td>
-                                            <td>12 Nov 2020</td>
-                                            <td>$564</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE2365</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-10.jpg" alt="User Image"></a>
-                                                    <a>John Chambers</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>15 Nov 2020</td>
-                                            <td>$234</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PRE1234</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a class="avatar avatar-sm me-2"><img
-                                                            class="avatar-img rounded-circle"
-                                                            src="assets/img/profiles/avatar-11.jpg" alt="User Image"></a>
-                                                    <a>Nathan Humphries</a>
-                                                </h2>
-                                            </td>
-                                            <td>Male</td>
-                                            <td>17 Nov 2020</td>
-                                            <td>$278</td>
-                                            <td class="text-end">
-                                                <span class="badge badge-success">Paid</span>
-                                            </td>
-                                        </tr>
+                                        @foreach ($salaryList as $key => $list)
+                                            <tr>
+                                                <td>PRE{{ $list->id }}</td>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a
+                                                            href="{{ url('student/profile/' . $list->id) }}"class="avatar avatar-sm me-2">
+                                                            <img class="avatar-img rounded-circle"
+                                                                src="{{ Storage::url('student-photos/' . $list->upload) }}"
+                                                                alt="User Image">
+                                                        </a>
+                                                        <a href="{{ url('salary/edit/' . $list->id) }}">{{ $list->name }}
+                                                        </a>
+                                                    </h2>
+                                                </td>
+                                                <td>{{ $list->date }}</td>
+                                                <td>${{ $list->amount }}</td>
+                                                <td class="text-end">
+                                                    <span class="payment-status toggle-button badge badge-{{status($list->status)}}" data-id="{{ $list->id}}">{{ $list->status }}</span>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -234,4 +80,52 @@
         </div>
 
     </div>
+    @section('script')
+    {{-- delete js --}}
+    <script>
+        $(document).on('click', '.student_delete', function() {
+            var _this = $(this).parents('tr');
+            $('.e_id').val(_this.find('.id').text());
+            $('.e_avatar').val(_this.find('.avatar').text());
+        });
+    </script>
+   
+<script>
+    // Function to update the data with AJAX
+    function updateData(id, newValue) {
+        $.ajax({
+            url: "{{ route('update-data', ':id') }}".replace(':id', id),
+            type: "put",
+            data: {
+                new_value: newValue,
+                _token:"{{ csrf_token() }}"
+            },
+            success: function (response) {
+                // Handle the response, if needed
+                console.log('Data updated successfully.');
+                location.reload();
+            },
+            error: function (error) {
+                // Handle the error, if any
+                console.error('Failed to update data.');
+            }
+        });
+    }
+
+    // Function to toggle the value between 'Paid', 'Unpaid', and 'Pending'
+    function toggleValue(element) {
+        var values = ['Paid', 'Unpaid', 'Pending'];
+        var currentVal = element.text().trim();
+        var nextVal = values[(values.indexOf(currentVal) + 1) % values.length];
+        element.text(nextVal);
+        // Update the database with the new value using AJAX
+        var dataId = element.data('id');
+        updateData(dataId, nextVal);
+    }
+
+    // Example: Toggle the value when a button is clicked
+    $('.toggle-button').click(function() {
+        toggleValue($(this));
+    });
+</script>
 @endsection

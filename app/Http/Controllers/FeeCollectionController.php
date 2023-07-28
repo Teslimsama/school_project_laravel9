@@ -94,6 +94,22 @@ class FeeCollectionController extends Controller
             return redirect()->back();
         }
     }
+    public function update(Request $request, $id)
+    {
+        $newValue = $request->input('new_value');
+
+        // You can add additional validation here if needed
+        if (!in_array($newValue, ['Paid', 'Unpaid', 'Pending'])) {
+            return response()->json(['error' => 'Invalid value'], 400);
+        }
+
+        // Update the data in the database
+        $data = FeesCollection::find($id);
+        $data->status = $newValue;
+        $data->save();
+
+        return response()->json(['success' => true]);
+    }
 
     /** Feescollection delete */
     public function FeescollectionDelete(Request $request)

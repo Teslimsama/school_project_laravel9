@@ -227,9 +227,9 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('feescollection/page') }}" class="{{ set_active(['feescollection/page']) }}">Fees Collection</a></li>
-                                <li><a href="{{ route('expenses/page') }}" class="{{ set_active(['expenses/page']) }}">Expenses</a></li>
-                                <li><a href="{{ route('salary/page') }}" class="{{ set_active(['salary/page']) }}">Salary</a></li>
+                                <li><a href="{{ route('feescollection/page') }}" class="{{ set_active(['feescollection/page', 'feescollection/page/add']) }} {{ request()->is('feescollection/edit/*') ? 'active' : '' }}">Fees Collection</a></li>
+                                <li><a href="{{ route('expenses/page') }}" class="{{ set_active(['expenses/page','expenses/add/page']) }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}">Expenses</a></li>
+                                <li><a href="{{ route('salary/page' ) }}" class="{{ set_active(['salary/page', 'salary/add/page']) }} {{ request()->is('salary/edit/*') ? 'active' : '' }}">Salary</a></li>
                             </ul>
                         </li>
                         
@@ -273,9 +273,9 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('feescollection/page') }}" class="{{ set_active(['feescollection/page']) }}">Fees Collection</a></li>
-                                <li><a href="{{ route('expenses/page') }}" class="{{ set_active(['expenses/page']) }}">Expenses</a></li>
-                                <li><a href="{{ route('salary/page') }}" class="{{ set_active(['salary/page']) }}">Salary</a></li>
+                                <li><a href="{{ route('feescollection/page') }}" class="{{ set_active(['feescollection/page', 'feescollection/page/add']) }} {{ request()->is('feescollection/edit/*') ? 'active' : '' }}">Fees Collection</a></li>
+                                <li><a href="{{ route('expenses/page') }}" class="{{ set_active(['expenses/page','expenses/add/page']) }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}">Expenses</a></li>
+                                <li><a href="{{ route('salary/page' ) }}" class="{{ set_active(['salary/page', 'salary/add/page']) }} {{ request()->is('salary/edit/*') ? 'active' : '' }}">Salary</a></li>
                             </ul>
                         </li>
                         
@@ -304,7 +304,7 @@
                                 <i class="feather-grid"></i><span>Dashboard</span></a>
                         </li>
 
-                        <li class="submenu {{ set_active([ 'subject/list/page']) }}{{ request()->is('subject/edit/*') ? 'active' : '' }}">
+                        <li class="submenu {{ set_active([ 'subject/list/page']) }}">
                             <a href="#"><i class="fas fa-book-reader"></i>
                                 <span> Subjects</span>
                                 <span class="menu-arrow"></span>
@@ -370,7 +370,7 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('subject/list/page') }}">Subject List</a></li>
+                                <li><a href="{{ route('subject/list/page') }}"class="{{ set_active(['subject/list/page']) }}">Subject List</a></li>
                             </ul>
                         </li>
 

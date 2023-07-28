@@ -47,7 +47,7 @@
                                             <th>Purchase Source</th>
                                             <th>Purchase Date</th>
                                             <th>Purchase By</th>
-                                            <th></th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -69,7 +69,7 @@
                                                 <td>${{ $list->amount }}</td>
                                                 <td>{{ $list->date }}</td>
                                                 <td class="text-end">
-                                                    <span class="badge badge-{{status($list->status)}}">{{ $list->status }}</span>
+                                                    <span class="payment-status toggle-button badge badge-{{status($list->status)}}" data-id="{{ $list->id}}">{{ $list->status }}</span>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -121,5 +121,45 @@
             $('.e_avatar').val(_this.find('.avatar').text());
         });
     </script>
+   
+<script>
+    // Function to update the data with AJAX
+    function updateData(id, newValue) {
+        $.ajax({
+            url: "{{ route('update-data', ':id') }}".replace(':id', id),
+            type: "put",
+            data: {
+                new_value: newValue,
+                _token:"{{ csrf_token() }}"
+            },
+            success: function (response) {
+                // Handle the response, if needed
+                console.log('Data updated successfully.');
+                location.reload();
+            },
+            error: function (error) {
+                // Handle the error, if any
+                console.error('Failed to update data.');
+            }
+        });
+    }
+
+    // Function to toggle the value between 'Paid', 'Unpaid', and 'Pending'
+    function toggleValue(element) {
+        var values = ['Paid', 'Unpaid', 'Pending'];
+        var currentVal = element.text().trim();
+        var nextVal = values[(values.indexOf(currentVal) + 1) % values.length];
+        element.text(nextVal);
+        // Update the database with the new value using AJAX
+        var dataId = element.data('id');
+        updateData(dataId, nextVal);
+    }
+
+    // Example: Toggle the value when a button is clicked
+    $('.toggle-button').click(function() {
+        toggleValue($(this));
+    });
+</script>
+
 @endsection
 @endsection
