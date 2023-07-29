@@ -24,6 +24,40 @@ class FeesController extends Controller
         $feesEdit = Fees::where('id', $id)->first();
         return view('fees.edit_fees', compact('feesEdit'));
     }
+    public function saveFees(Request $request)
+    {
+
+        $request->validate([
+            'name'    => 'required|string',
+            'class'     => 'required|string',
+            'amount'     => 'required|string',
+
+
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+
+            if (!empty($request->name)) {
+                $fees = new Fees;
+                $fees->name   = $request->name;
+                $fees->class    = $request->class;
+                $fees->amount    = $request->amount;
+                $fees->save();
+                // dd($request);
+
+                Toastr::success('Has been add successfully :)', 'Success');
+                DB::commit();
+            }
+
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('fail, Add new fees  :)', 'Error');
+            return redirect()->back();
+        }
+    }
     public function updateFees(Request $request)
     {
         DB::beginTransaction();
@@ -60,40 +94,6 @@ class FeesController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Toastr::error('Fees deleted fail :)', 'Error');
-            return redirect()->back();
-        }
-    }
-    public function saveFees(Request $request)
-    {
-
-        $request->validate([
-            'name'    => 'required|string',
-            'class'     => 'required|string',
-            'amount'     => 'required|string',
-
-
-        ]);
-
-        DB::beginTransaction();
-        try {
-
-
-            if (!empty($request->name)) {
-                $fees = new Fees;
-                $fees->name   = $request->name;
-                $fees->class    = $request->class;
-                $fees->amount    = $request->amount;
-
-                $fees->save();
-
-                Toastr::success('Has been add successfully :)', 'Success');
-                DB::commit();
-            }
-
-            return redirect()->back();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Toastr::error('fail, Add new fees  :)', 'Error');
             return redirect()->back();
         }
     }

@@ -14,7 +14,7 @@ class FullCalendarController extends Controller
             $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
             $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
             $events = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)
-                ->get(['id', 'title', 'start', 'end']);
+                ->get(['id', 'title', 'start', 'end' ,'category']);
             return response()->json($events);
         }
         return view('event.event');
@@ -43,6 +43,7 @@ class FullCalendarController extends Controller
         $event->title = $request->title;
         $event->start = $request->start;
         $event->end = $request->end;
+        $event->category = $request->category;
         $event->save();
 
         return response()->json(['message' => 'Event updated successfully'], 200);

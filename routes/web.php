@@ -237,7 +237,12 @@ Route::controller(SalaryController::class)->group(function () {
 
     // ----------------------- blank page -----------------------------//
     Route::controller(ExamController::class)->group(function () {
-        Route::get('exam/page', 'LetsGo')->name('exam/page');
+    Route::get('exam/page', 'Exam')->name('exam/page');
+    Route::get('exam/add/page', 'examAdd')->middleware('auth')->name('exam/add/page'); // page exam
+    Route::post('exam/add/save', 'examSave')->name('exam/add/save'); // save record exam
+    Route::get('exam/edit/{id}', 'examEdit'); // view for edit
+    Route::post('exam/update', 'examUpdate')->name('exam/update'); // update record exam
+    Route::post('exam/delete', 'examDelete')->name('exam/delete'); // delete record exam
     });
     // ----------------------- blank page -----------------------------//
     Route::controller(TimeTableController::class)->group(function () {

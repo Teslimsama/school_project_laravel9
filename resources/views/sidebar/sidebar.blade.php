@@ -75,7 +75,8 @@
                             </ul>
                         </li>
 
-                        <li class="submenu {{ set_active(['department/add/page', 'department/list/page']) }} {{ request()->is('department/edit/*') ? 'active' : '' }}">
+                        <li
+                            class="submenu {{ set_active(['department/add/page', 'department/list/page']) }} {{ request()->is('department/edit/*') ? 'active' : '' }}">
                             <a href="#"><i class="fas fa-building"></i>
                                 <span> Departments</span>
                                 <span class="menu-arrow"></span>
@@ -88,46 +89,63 @@
 
                             </ul>
                         </li>
-                        <li class="submenu {{ set_active(['subject/add/page', 'subject/list/page']) }} {{ request()->is('subject/edit/*') ? 'active' : '' }}">
+                        <li
+                            class="submenu {{ set_active(['subject/add/page', 'subject/list/page']) }} {{ request()->is('subject/edit/*') ? 'active' : '' }}">
                             <a href="#"><i class="fas fa-book-reader"></i>
                                 <span> Subjects</span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('subject/list/page') }}" class="{{ set_active(['subject/list/page']) }}">Subject List</a></li>
-                                <li><a href="{{ route('subject/add/page') }}" class="{{ set_active(['subject/add/page']) }}">Subject Add</a></li>
+                                <li><a href="{{ route('subject/list/page') }}"
+                                        class="{{ set_active(['subject/list/page']) }}">Subject List</a></li>
+                                <li><a href="{{ route('subject/add/page') }}"
+                                        class="{{ set_active(['subject/add/page']) }}">Subject Add</a></li>
                             </ul>
                         </li>
 
                         <li class="menu-title">
                             <span>Management</span>
                         </li>
-                        <li class="submenu {{ set_active(['feescollection/page', 'salary/page', 'expenses/page']) }}  {{ request()->is('feescollection/edit/*') ? 'active' : '' }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}  {{ request()->is('salary/edit/*') ? 'active' : '' }}">
+                        <li
+                            class="submenu {{ set_active(['feescollection/page', 'salary/page', 'expenses/page']) }}  {{ request()->is('feescollection/edit/*') ? 'active' : '' }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}  {{ request()->is('salary/edit/*') ? 'active' : '' }}">
                             <a href="#"><i class="fas fa-file-invoice-dollar"></i>
                                 <span> Accounts</span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('feescollection/page') }}" class="{{ set_active(['feescollection/page', 'feescollection/page/add']) }} {{ request()->is('feescollection/edit/*') ? 'active' : '' }}">Fees Collection</a></li>
-                                <li><a href="{{ route('expenses/page') }}" class="{{ set_active(['expenses/page','expenses/add/page']) }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}">Expenses</a></li>
-                                <li><a href="{{ route('salary/page' ) }}" class="{{ set_active(['salary/page', 'salary/add/page']) }} {{ request()->is('salary/edit/*') ? 'active' : '' }}">Salary</a></li>
+                                <li><a href="{{ route('feescollection/page') }}"
+                                        class="{{ set_active(['feescollection/page', 'feescollection/page/add']) }} {{ request()->is('feescollection/edit/*') ? 'active' : '' }}">Fees
+                                        Collection</a></li>
+                                <li><a href="{{ route('expenses/page') }}"
+                                        class="{{ set_active(['expenses/page', 'expenses/add/page']) }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}">Expenses</a>
+                                </li>
+                                <li><a href="{{ route('salary/page') }}"
+                                        class="{{ set_active(['salary/page', 'salary/add/page']) }} {{ request()->is('salary/edit/*') ? 'active' : '' }}">Salary</a>
+                                </li>
                             </ul>
                         </li>
-                        
-                        <li class="{{ set_active(['fees/page']) }}">
-                            <a href="{{ route('fees/page') }}" class="{{ set_active(['fees/page']) }}"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
+
+                        <li
+                            class="{{ set_active(['fees/page', 'fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}">
+                            <a href="{{ route('fees/page') }}"
+                                class="{{ set_active(['fees/page', 'fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}"><i
+                                    class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
                         <li class="{{ set_active(['exam/page']) }}">
-                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i
+                                    class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">
-                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
+                                    class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                         <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{route('library/page')}}"><i class="fas fa-table"></i> <span>Time Table</span></a>
+                            <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
+                                    Table</span></a>
                         </li>
-                        <li  class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}"  class="{{ set_active(['library/page']) }}"><i class="fas fa-book"></i> <span>Library</span></a>
+                        <li class="{{ set_active(['library/page']) }}">
+                            <a href="{{ route('library/page') }}" class="{{ set_active(['library/page']) }}"><i
+                                    class="fas fa-book"></i> <span>Library</span></a>
                         </li>
                     </ul>
                 </div>
@@ -194,7 +212,8 @@
                             </ul>
                         </li>
 
-                        <li class="submenu {{ set_active(['department/add/page', 'department/list/page']) }} {{ request()->is('department/edit/*') ? 'active' : '' }}">
+                        <li
+                            class="submenu {{ set_active(['department/add/page', 'department/list/page']) }} {{ request()->is('department/edit/*') ? 'active' : '' }}">
                             <a href="#"><i class="fas fa-building"></i>
                                 <span> Departments</span>
                                 <span class="menu-arrow"></span>
@@ -207,46 +226,63 @@
 
                             </ul>
                         </li>
-                        <li class="submenu {{ set_active(['subject/add/page', 'subject/list/page']) }}{{ request()->is('subject/edit/*') ? 'active' : '' }}">
+                        <li
+                            class="submenu {{ set_active(['subject/add/page', 'subject/list/page']) }}{{ request()->is('subject/edit/*') ? 'active' : '' }}">
                             <a href="#"><i class="fas fa-book-reader"></i>
                                 <span> Subjects</span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('subject/list/page') }}" class="{{ set_active(['subject/list/page']) }}">Subject List</a></li>
-                                <li><a href="{{ route('subject/add/page') }}" class="{{ set_active(['subject/add/page']) }}">Subject Add</a></li>
+                                <li><a href="{{ route('subject/list/page') }}"
+                                        class="{{ set_active(['subject/list/page']) }}">Subject List</a></li>
+                                <li><a href="{{ route('subject/add/page') }}"
+                                        class="{{ set_active(['subject/add/page']) }}">Subject Add</a></li>
                             </ul>
                         </li>
 
                         <li class="menu-title">
                             <span>Management</span>
                         </li>
-                        <li class="submenu {{ set_active(['feescollection/page', 'salary/page', 'expenses/page']) }}  {{ request()->is('feescollection/edit/*') ? 'active' : '' }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}  {{ request()->is('salary/edit/*') ? 'active' : '' }}">
+                        <li
+                            class="submenu {{ set_active(['feescollection/page', 'salary/page', 'expenses/page']) }}  {{ request()->is('feescollection/edit/*') ? 'active' : '' }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}  {{ request()->is('salary/edit/*') ? 'active' : '' }}">
                             <a href="#"><i class="fas fa-file-invoice-dollar"></i>
                                 <span> Accounts</span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('feescollection/page') }}" class="{{ set_active(['feescollection/page', 'feescollection/page/add']) }} {{ request()->is('feescollection/edit/*') ? 'active' : '' }}">Fees Collection</a></li>
-                                <li><a href="{{ route('expenses/page') }}" class="{{ set_active(['expenses/page','expenses/add/page']) }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}">Expenses</a></li>
-                                <li><a href="{{ route('salary/page' ) }}" class="{{ set_active(['salary/page', 'salary/add/page']) }} {{ request()->is('salary/edit/*') ? 'active' : '' }}">Salary</a></li>
+                                <li><a href="{{ route('feescollection/page') }}"
+                                        class="{{ set_active(['feescollection/page', 'feescollection/page/add']) }} {{ request()->is('feescollection/edit/*') ? 'active' : '' }}">Fees
+                                        Collection</a></li>
+                                <li><a href="{{ route('expenses/page') }}"
+                                        class="{{ set_active(['expenses/page', 'expenses/add/page']) }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}">Expenses</a>
+                                </li>
+                                <li><a href="{{ route('salary/page') }}"
+                                        class="{{ set_active(['salary/page', 'salary/add/page']) }} {{ request()->is('salary/edit/*') ? 'active' : '' }}">Salary</a>
+                                </li>
                             </ul>
                         </li>
-                        
-                        <li class="{{ set_active(['fees/page']) }}">
-                            <a href="{{ route('fees/page') }}" class="{{ set_active(['fees/page']) }}"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
+
+                        <li
+                            class="{{ set_active(['fees/page', 'fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}">
+                            <a href="{{ route('fees/page') }}"
+                                class="{{ set_active(['fees/page', 'fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}"><i
+                                    class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
                         <li class="{{ set_active(['exam/page']) }}">
-                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i
+                                    class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">
-                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
+                                    class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                         <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{route('library/page')}}"><i class="fas fa-table"></i> <span>Time Table</span></a>
+                            <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
+                                    Table</span></a>
                         </li>
-                        <li  class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}"  class="{{ set_active(['library/page']) }}"><i class="fas fa-book"></i> <span>Library</span></a>
+                        <li class="{{ set_active(['library/page']) }}">
+                            <a href="{{ route('library/page') }}" class="{{ set_active(['library/page']) }}"><i
+                                    class="fas fa-book"></i> <span>Library</span></a>
                         </li>
                     </ul>
                 </div>
@@ -267,23 +303,31 @@
                             </a>
                         </li>
 
-                        <li class="submenu {{ set_active(['feescollection/page', 'salary/page', 'expenses/page']) }}  {{ request()->is('feescollection/edit/*') ? 'active' : '' }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}  {{ request()->is('salary/edit/*') ? 'active' : '' }}">
+                        <li
+                            class="submenu {{ set_active(['feescollection/page', 'salary/page', 'expenses/page']) }}  {{ request()->is('feescollection/edit/*') ? 'active' : '' }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}  {{ request()->is('salary/edit/*') ? 'active' : '' }}">
                             <a href="#"><i class="fas fa-file-invoice-dollar"></i>
                                 <span> Accounts</span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('feescollection/page') }}" class="{{ set_active(['feescollection/page', 'feescollection/page/add']) }} {{ request()->is('feescollection/edit/*') ? 'active' : '' }}">Fees Collection</a></li>
-                                <li><a href="{{ route('expenses/page') }}" class="{{ set_active(['expenses/page','expenses/add/page']) }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}">Expenses</a></li>
-                                <li><a href="{{ route('salary/page' ) }}" class="{{ set_active(['salary/page', 'salary/add/page']) }} {{ request()->is('salary/edit/*') ? 'active' : '' }}">Salary</a></li>
+                                <li><a href="{{ route('feescollection/page') }}"
+                                        class="{{ set_active(['feescollection/page', 'feescollection/page/add']) }} {{ request()->is('feescollection/edit/*') ? 'active' : '' }}">Fees
+                                        Collection</a></li>
+                                <li><a href="{{ route('expenses/page') }}"
+                                        class="{{ set_active(['expenses/page', 'expenses/add/page']) }} {{ request()->is('expenses/edit/*') ? 'active' : '' }}">Expenses</a>
+                                </li>
+                                <li><a href="{{ route('salary/page') }}"
+                                        class="{{ set_active(['salary/page', 'salary/add/page']) }} {{ request()->is('salary/edit/*') ? 'active' : '' }}">Salary</a>
+                                </li>
                             </ul>
                         </li>
-                        
-                        <li class="{{ set_active(['fees/page']) }}">
-                            <a href="{{ route('fees/page') }}" class="{{ set_active(['fees/page']) }}"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
+
+                        <li class="{{ set_active(['fees/page','fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}">
+                            <a href="{{ route('fees/page') }}" class="{{ set_active(['fees/page','fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">
-                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
+                                    class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                     </ul>
                 </div>
@@ -304,32 +348,37 @@
                                 <i class="feather-grid"></i><span>Dashboard</span></a>
                         </li>
 
-                        <li class="submenu {{ set_active([ 'subject/list/page']) }}">
+                        <li class="submenu {{ set_active(['subject/list/page']) }}">
                             <a href="#"><i class="fas fa-book-reader"></i>
                                 <span> Subjects</span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('subject/list/page') }}" class="{{ set_active(['subject/list/page']) }}">Subject List</a></li>
-                                
+                                <li><a href="{{ route('subject/list/page') }}"
+                                        class="{{ set_active(['subject/list/page']) }}">Subject List</a></li>
+
                             </ul>
                         </li>
 
-                        
-                       <li class="{{ set_active(['fees/page']) }}">
-                            <a href="{{ route('fees/page') }}" class="{{ set_active(['fees/page']) }}"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
+                        <li class="{{ set_active(['fees/page']) }}">
+                            <a href="{{ route('fees/page') }}" class="{{ set_active(['fees/page']) }}"><i
+                                    class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
                         <li class="{{ set_active(['exam/page']) }}">
-                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i
+                                    class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">
-                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
+                                    class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                         <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{route('library/page')}}"><i class="fas fa-table"></i> <span>Time Table</span></a>
+                            <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
+                                    Table</span></a>
                         </li>
-                        <li  class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}"  class="{{ set_active(['library/page']) }}"><i class="fas fa-book"></i> <span>Library</span></a>
+                        <li class="{{ set_active(['library/page']) }}">
+                            <a href="{{ route('library/page') }}" class="{{ set_active(['library/page']) }}"><i
+                                    class="fas fa-book"></i> <span>Library</span></a>
                         </li>
                     </ul>
                 </div>
@@ -370,21 +419,27 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ route('subject/list/page') }}"class="{{ set_active(['subject/list/page']) }}">Subject List</a></li>
+                                <li><a
+                                        href="{{ route('subject/list/page') }}"class="{{ set_active(['subject/list/page']) }}">Subject
+                                        List</a></li>
                             </ul>
                         </li>
 
                         <li class="{{ set_active(['exam/page']) }}">
-                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i
+                                    class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">
-                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                            <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
+                                    class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
                         <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{route('library/page')}}"><i class="fas fa-table"></i> <span>Time Table</span></a>
+                            <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
+                                    Table</span></a>
                         </li>
-                        <li  class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}"  class="{{ set_active(['library/page']) }}"><i class="fas fa-book"></i> <span>Library</span></a>
+                        <li class="{{ set_active(['library/page']) }}">
+                            <a href="{{ route('library/page') }}" class="{{ set_active(['library/page']) }}"><i
+                                    class="fas fa-book"></i> <span>Library</span></a>
                         </li>
                     </ul>
                 </div>

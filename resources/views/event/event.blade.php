@@ -51,12 +51,23 @@
                                 <input type="text" class="form-control event-title">
                             </div>
                             <div class="form-group">
+                                <label for="event-category">Category</label>
+                                <select class="form-control event-category">
+                                    <option value="bg-danger">Danger</option>
+                                    <option value="bg-success">Success</option>
+                                    <option value="bg-purple">Purple</option>
+                                    <option value="bg-primary">Primary</option>
+                                    <option value="bg-info">Info</option>
+                                    <option value="bg-warning">Warning</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="event-start">Start Date</label>
-                                <input type="date" class="form-control event-start">
+                                <input type="datetime-local" class="form-control event-start">
                             </div>
                             <div class="form-group">
                                 <label for="event-end">End Date</label>
-                                <input type="date" class="form-control event-end">
+                                <input type="datetime-local" class="form-control event-end">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -77,6 +88,8 @@
 
                 CalendarApp.prototype.init = function() {
                     this.$calendarObj = this.$calendar.fullCalendar({
+                        minTime: "08:00:00",
+                        maxTime: "19:00:00",
                         header: {
                             left: 'prev,next today',
                             center: 'title',
@@ -92,18 +105,21 @@
 
                         @if (in_array($userRole, $allowedRoles))
                             @if ($userRole === 'Super Admin' || $userRole === 'Admin')
-                                displayEventTime: false,
+                                displayEventTime: true,
                                 selectable: true,
                                 selectHelper: true,
                                 select: function(start, end, allDay) {
                                     var title = prompt('Event Title:');
                                     if (title) {
-                                        var start = moment(start).format('YYYY-MM-DD');
-                                        var end = moment(end).format('YYYY-MM-DD');
+                                        var start = moment(start).format('YYYY-MM-DD HH:mm');
+                                        var end = moment(end).format('YYYY-MM-DD HH:mm');
+                                        var category = prompt('Event Category (e.g., bg-danger, bg-success, etc.):');
+                        
+
                                         $.ajax({
                                             url: "{{ route('createevent') }}", // Replace "createevent" with your Laravel route for creating events
                                             data: 'title=' + title + '&start=' + start +
-                                                '&end=' + end +
+                                                '&end=' + end + '&category=' + category +
                                                 '&_token=' + "{{ csrf_token() }}",
                                             type: "post",
                                             success: function(data) {
@@ -118,21 +134,22 @@
                                     var updateEventModal = $('#updateEventModal');
                                     updateEventModal.find('.event-title').val(event.title);
                                     updateEventModal.find('.event-start').val(moment(event.start)
-                                        .format(
-                                            'YYYY-MM-DD'));
+                                        .format('YYYY-MM-DD HH:mm'));
                                     updateEventModal.find('.event-end').val(moment(event.end).format(
-                                        'YYYY-MM-DD'));
-
+                                        'YYYY-MM-DD HH:mm'));
+                                    // updateEventModal.find('.event-category').val(event.className[
+                                    //     0]); // Set the category value in the modal
                                     updateEventModal.find('.update-event-btn').on('click', function() {
                                         var title = updateEventModal.find('.event-title').val();
                                         var start = updateEventModal.find('.event-start').val();
                                         var end = updateEventModal.find('.event-end').val();
-
+                                        var category = updateEventModal.find('.event-category')
+                                            .val();
                                         // Perform AJAX request to update the event on the server
                                         $.ajax({
                                             url: "{{ route('updateevent') }}", // Replace with your Laravel route for updating events
                                             data: 'id=' + event.id + '&title=' + title +
-                                                '&start=' + start + '&end=' + end +
+                                                '&start=' + start + '&end=' + end + '&category=' + category  +
                                                 '&_token=' + "{{ csrf_token() }}",
                                             type: "post",
                                             success: function(data) {
@@ -147,32 +164,34 @@
                                     // Show the modal when an event is clicked
                                     updateEventModal.modal('show');
                                 },
-
+                                getEventCategory: function() {
+                                    return $('#updateEventModal').find('.event-category').val();
+                                },
                                 // Event Resize
-                                eventResize: function(event, delta, revertFunc) {
-                                    var newStart = moment(event.start).format('YYYY-MM-DD');
-                                    var newEnd = moment(event.end).format('YYYY-MM-DD');
+                                // eventResize: function(event, delta, revertFunc) {
+                                //     var newStart = moment(event.start).format('YYYY-MM-DD HH:mm');
+                                //     var newEnd = moment(event.end).format('YYYY-MM-DD HH:mm');
 
-                                    // Perform AJAX request to update the event on the server
-                                    $.ajax({
-                                        url: "{{ route('updateevent') }}", // Replace with your Laravel route for updating events
-                                        data: 'id=' + event.id + '&start=' + newStart +
-                                            '&end=' +
-                                            newEnd +
-                                            '&_token=' + "{{ csrf_token() }}",
-                                        type: "post",
-                                        success: function(data) {
-                                            alert("Event Resized Successfully");
-                                            $('#calendar').fullCalendar('refetchEvents');
-                                        },
-                                        error: function() {
-                                            alert(
-                                                "Error: Could not resize event. Reverting changes."
-                                            );
-                                            revertFunc();
-                                        }
-                                    });
-                                }
+                                //     // Perform AJAX request to update the event on the server
+                                //     $.ajax({
+                                //         url: "{{ route('updateevent') }}", // Replace with your Laravel route for updating events
+                                //         data: 'id=' + event.id + '&start=' + newStart +
+                                //             '&end=' +
+                                //             newEnd +
+                                //             '&_token=' + "{{ csrf_token() }}",
+                                //         type: "post",
+                                //         success: function(data) {
+                                //             alert("Event Resized Successfully");
+                                //             $('#calendar').fullCalendar('refetchEvents');
+                                //         },
+                                //         error: function() {
+                                //             alert(
+                                //                 "Error: Could not resize event. Reverting changes."
+                                //             );
+                                //             revertFunc();
+                                //         }
+                                //     });
+                                // }
                             @endif
                         @endif
                     });
@@ -182,4 +201,5 @@
             });
         </script>
     @endsection
+
 @endsection
