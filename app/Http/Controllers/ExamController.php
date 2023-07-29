@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Exam;
+use App\Models\Subject;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -108,5 +109,14 @@ class ExamController extends Controller
             Toastr::error('exam deleted fail :)', 'Error');
             return redirect()->back();
         }
+    }
+    public function getSubjectsClasses()
+    {
+        $subjects = Subject::pluck('name', 'id');
+        $classes = Subject::pluck('class', 'id');
+        return response()->json([
+            'subjects' => $subjects,
+            'classes' => $classes,
+        ]);
     }
 }

@@ -131,8 +131,8 @@
                                 class="{{ set_active(['fees/page', 'fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}"><i
                                     class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
-                        <li class="{{ set_active(['exam/page']) }}">
-                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i
+                        <li class="{{ set_active(['exam/page', 'exam/add/page']) }}">
+                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page', 'exam/add/page']) }} {{ request()->is('exam/edit/*') ? 'active' : '' }}"><i
                                     class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">
@@ -268,8 +268,8 @@
                                 class="{{ set_active(['fees/page', 'fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}"><i
                                     class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
-                        <li class="{{ set_active(['exam/page']) }}">
-                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page']) }}"><i
+                        <li class="{{ set_active(['exam/page', 'exam/add/page']) }}">
+                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page', 'exam/add/page']) }} {{ request()->is('exam/edit/*') ? 'active' : '' }}"><i
                                     class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">

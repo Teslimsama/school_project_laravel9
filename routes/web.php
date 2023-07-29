@@ -15,6 +15,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\blankPageController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\FeeCollectionController;
 use App\Http\Controllers\FeesController;
@@ -243,6 +244,8 @@ Route::controller(SalaryController::class)->group(function () {
     Route::get('exam/edit/{id}', 'examEdit'); // view for edit
     Route::post('exam/update', 'examUpdate')->name('exam/update'); // update record exam
     Route::post('exam/delete', 'examDelete')->name('exam/delete'); // delete record exam
+    Route::get('/get_subjects_classes', 'getSubjectsClasses');
+
     });
     // ----------------------- blank page -----------------------------//
     Route::controller(TimeTableController::class)->group(function () {
