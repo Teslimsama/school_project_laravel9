@@ -143,8 +143,8 @@
                             <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
                                     Table</span></a>
                         </li>
-                        <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}" class="{{ set_active(['library/page']) }}"><i
+                        <li class="{{ set_active(['library/page', 'library/add/page']) }}">
+                            <a href="{{ route('library/page') }}" class="{{ request()->is('library/edit/*') ? 'active' : '' }} {{ set_active(['library/page', 'library/add/page']) }}"><i
                                     class="fas fa-book"></i> <span>Library</span></a>
                         </li>
                     </ul>
@@ -280,8 +280,8 @@
                             <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
                                     Table</span></a>
                         </li>
-                        <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}" class="{{ set_active(['library/page']) }}"><i
+                        <li class="{{ set_active(['library/page', 'library/add/page']) }}">
+                            <a href="{{ route('library/page') }}" class="{{ request()->is('library/edit/*') ? 'active' : '' }} {{ set_active(['library/page', 'library/add/page']) }}"><i
                                     class="fas fa-book"></i> <span>Library</span></a>
                         </li>
                     </ul>

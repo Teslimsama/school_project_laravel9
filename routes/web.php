@@ -52,6 +52,14 @@ function status($status){
         return 'warning';
     }
 }
+function librarystatus($status){
+    if( $status ===  'In Stock'){
+        return 'success';
+    }else{
+        return 'danger';
+        
+    }
+}
 
 Route::get('/', function () {
     return view('auth.login');
@@ -252,7 +260,15 @@ Route::controller(SalaryController::class)->group(function () {
         Route::get('timetable/page', 'LetsGo')->name('timetable/page');
     });
     Route::controller(LibraryController::class)->group(function () {
-        Route::get('library/page', 'LetsGo')->name('library/page');
+    Route::get('library/page', 'library')->name('library/page');
+    Route::get('library/add/page', 'libraryAdd')->middleware('auth')->name('library/add/page'); // page library
+    Route::post('library/add/save', 'librarySave')->name('library/add/save'); // save record library
+    Route::get('library/edit/{id}', 'libraryEdit'); // view for edit
+    Route::post('library/update', 'libraryUpdate')->name('library/update'); // update record library
+    Route::post('library/delete', 'elibraryelete')->name('library/delete'); // delete record library
+    Route::get('/getdepartment', 'getdepartmentClasses');
+    Route::put('/update-data/{id}', 'update')->name('library/update-data');
+
     });
     // ----------------------- blank page -----------------------------//
     Route::controller(blankPageController::class)->group(function () {
