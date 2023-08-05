@@ -22,6 +22,7 @@ use App\Http\Controllers\FeesController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\TimeTableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,21 +44,22 @@ function set_active($route)
     return Request::path() == $route ? 'active' : '';
 }
 // for set status color
-function status($status){
-    if( $status ===  'Paid'){
+function status($status)
+{
+    if ($status ===  'Paid') {
         return 'success';
-    }elseif($status ===  'Unpaid'){
+    } elseif ($status ===  'Unpaid') {
         return 'danger';
-    }else{
+    } else {
         return 'warning';
     }
 }
-function librarystatus($status){
-    if( $status ===  'In Stock'){
+function librarystatus($status)
+{
+    if ($status ===  'In Stock') {
         return 'success';
-    }else{
+    } else {
         return 'danger';
-        
     }
 }
 
@@ -213,7 +215,6 @@ Route::controller(FeeCollectionController::class)->group(function () {
     Route::post('feescollection/delete', 'FeescollectionDelete')->name('feescollection/delete');
     Route::get('feescollection/edit/{id}', 'FeescollectionEdit')->middleware('auth');
     Route::put('/update-data/{id}', 'update')->name('update-data');
-
 });
 
 Route::controller(FeesController::class)->group(function () {
@@ -241,11 +242,11 @@ Route::controller(SalaryController::class)->group(function () {
     Route::get('salary/edit/{id}', 'salaryEdit'); // view for edit
     Route::post('salary/update', 'salaryUpdate')->name('salary/update'); // update record expenses
     Route::put('/update-data/{id}', 'update')->name('update-data');
-    Route::post( 'salary/delete', 'salaryDelete')->name('salary/delete'); // delete record salary
+    Route::post('salary/delete', 'salaryDelete')->name('salary/delete'); // delete record salary
 });
 
-    // ----------------------- blank page -----------------------------//
-    Route::controller(ExamController::class)->group(function () {
+// ----------------------- blank page -----------------------------//
+Route::controller(ExamController::class)->group(function () {
     Route::get('exam/page', 'Exam')->name('exam/page');
     Route::get('exam/add/page', 'examAdd')->middleware('auth')->name('exam/add/page'); // page exam
     Route::post('exam/add/save', 'examSave')->name('exam/add/save'); // save record exam
@@ -253,13 +254,18 @@ Route::controller(SalaryController::class)->group(function () {
     Route::post('exam/update', 'examUpdate')->name('exam/update'); // update record exam
     Route::post('exam/delete', 'examDelete')->name('exam/delete'); // delete record exam
     Route::get('/get_subjects_classes', 'getSubjectsClasses');
-
-    });
-    // ----------------------- blank page -----------------------------//
-    Route::controller(TimeTableController::class)->group(function () {
-        Route::get('timetable/page', 'LetsGo')->name('timetable/page');
-    });
-    Route::controller(LibraryController::class)->group(function () {
+});
+// ----------------------- blank page -----------------------------//
+Route::controller(TimeTableController::class)->group(function () {
+    Route::get('timetable/page', 'Timetable')->name('timetable/page');
+    Route::get('timetable/add/page', 'TimetableAdd')->middleware('auth')->name('timetable/add/page'); // page timetable
+    Route::post('timetable/add/save', 'TimetableSave')->name('timetable/add/save'); // save record timetable
+    Route::get('timetable/edit/{id}', 'TimetableEdit'); // view for edit
+    Route::post('timetable/update', 'TimetableUpdate')->name('timetable/update'); // update record timetable
+    Route::post('timetable/delete', 'TimetableDelete')->name('timetable/delete'); // delete record timetable
+    Route::get('/get_subjects_teacher', 'getSubjectsTeacher');
+});
+Route::controller(LibraryController::class)->group(function () {
     Route::get('library/page', 'library')->name('library/page');
     Route::get('library/add/page', 'libraryAdd')->middleware('auth')->name('library/add/page'); // page library
     Route::post('library/add/save', 'librarySave')->name('library/add/save'); // save record library
@@ -268,9 +274,8 @@ Route::controller(SalaryController::class)->group(function () {
     Route::post('library/delete', 'elibraryelete')->name('library/delete'); // delete record library
     Route::get('/getdepartment', 'getdepartmentClasses');
     Route::put('/update-data/{id}', 'update')->name('library/update-data');
-
-    });
-    // ----------------------- blank page -----------------------------//
-    Route::controller(blankPageController::class)->group(function () {
-        Route::get('blank/page', 'LetsGo')->name('blank/page');
-    });
+});
+// ----------------------- blank page -----------------------------//
+Route::controller(blankPageController::class)->group(function () {
+    Route::get('blank/page', 'LetsGo')->name('blank/page');
+});

@@ -132,19 +132,24 @@
                                     class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
                         <li class="{{ set_active(['exam/page', 'exam/add/page']) }}">
-                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page', 'exam/add/page']) }} {{ request()->is('exam/edit/*') ? 'active' : '' }}"><i
+                            <a href="{{ route('exam/page') }}"
+                                class="{{ set_active(['exam/page', 'exam/add/page']) }} {{ request()->is('exam/edit/*') ? 'active' : '' }}"><i
                                     class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">
                             <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
                                     class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
-                        <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
+                        <li
+                            class="{{ set_active(['timetable/page', 'timetable/add/page']) }} {{ request()->is('timetable/edit/*') ? 'active' : '' }}">
+                            <a href="{{ route('timetable/page') }}"
+                                class="{{ set_active(['timetable/page', 'timetable/add/page']) }} {{ request()->is('timetable/edit/*') ? 'active' : '' }}"><i
+                                    class="fas fa-table"></i> <span>Time
                                     Table</span></a>
                         </li>
                         <li class="{{ set_active(['library/page', 'library/add/page']) }}">
-                            <a href="{{ route('library/page') }}" class="{{ request()->is('library/edit/*') ? 'active' : '' }} {{ set_active(['library/page', 'library/add/page']) }}"><i
+                            <a href="{{ route('library/page') }}"
+                                class="{{ request()->is('library/edit/*') ? 'active' : '' }} {{ set_active(['library/page', 'library/add/page']) }}"><i
                                     class="fas fa-book"></i> <span>Library</span></a>
                         </li>
                     </ul>
@@ -269,19 +274,24 @@
                                     class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
                         <li class="{{ set_active(['exam/page', 'exam/add/page']) }}">
-                            <a href="{{ route('exam/page') }}" class="{{ set_active(['exam/page', 'exam/add/page']) }} {{ request()->is('exam/edit/*') ? 'active' : '' }}"><i
+                            <a href="{{ route('exam/page') }}"
+                                class="{{ set_active(['exam/page', 'exam/add/page']) }} {{ request()->is('exam/edit/*') ? 'active' : '' }}"><i
                                     class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">
                             <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
                                     class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
-                        <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
+                        <li
+                            class="{{ set_active(['timetable/page', 'timetable/add/page']) }} {{ request()->is('timetable/edit/*') ? 'active' : '' }}">
+                            <a href="{{ route('timetable/page') }}"
+                                class="{{ set_active(['timetable/page', 'timetable/add/page']) }} {{ request()->is('timetable/edit/*') ? 'active' : '' }}"><i
+                                    class="fas fa-table"></i> <span>Time
                                     Table</span></a>
                         </li>
                         <li class="{{ set_active(['library/page', 'library/add/page']) }}">
-                            <a href="{{ route('library/page') }}" class="{{ request()->is('library/edit/*') ? 'active' : '' }} {{ set_active(['library/page', 'library/add/page']) }}"><i
+                            <a href="{{ route('library/page') }}"
+                                class="{{ request()->is('library/edit/*') ? 'active' : '' }} {{ set_active(['library/page', 'library/add/page']) }}"><i
                                     class="fas fa-book"></i> <span>Library</span></a>
                         </li>
                     </ul>
@@ -322,8 +332,11 @@
                             </ul>
                         </li>
 
-                        <li class="{{ set_active(['fees/page','fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}">
-                            <a href="{{ route('fees/page') }}" class="{{ set_active(['fees/page','fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
+                        <li
+                            class="{{ set_active(['fees/page', 'fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}">
+                            <a href="{{ route('fees/page') }}"
+                                class="{{ set_active(['fees/page', 'fees/page/add']) }}  {{ request()->is('fees/edit/*') ? 'active' : '' }}"><i
+                                    class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                         </li>
                         <li class="{{ set_active(['getevent']) }}">
                             <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
@@ -372,8 +385,8 @@
                             <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
                                     class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
-                        <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
+                        <li class="{{ set_active(['titimetable/page']) }}">
+                            <a href="{{ route('titimetable/page') }}"><i class="fas fa-table"></i> <span>Time
                                     Table</span></a>
                         </li>
                         <li class="{{ set_active(['library/page']) }}">
@@ -433,8 +446,8 @@
                             <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
                                     class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
-                        <li class="{{ set_active(['library/page']) }}">
-                            <a href="{{ route('library/page') }}"><i class="fas fa-table"></i> <span>Time
+                        <li class="{{ set_active(['timetable/page']) }}">
+                            <a href="{{ route('timetable/page') }}"><i class="fas fa-table"></i> <span>Time
                                     Table</span></a>
                         </li>
                         <li class="{{ set_active(['library/page']) }}">
