@@ -43,9 +43,15 @@
                                                     <div class="student-box flex-fill">
                                                         <div class="student-img">
                                                             <a href="{{ url('teacher/profile/' . $list->id) }}">
-                                                                <img class="img-fluid" alt="Teachers Info"
+                                                                @if (!empty($list->avatar))
+                                                                <img class="avatar-img rounded-circle"
+                                                                    src="{{ URL::to('images/' . $list->avatar) }}"
+                                                                    alt="{{ $list->full_name }}">
+                                                            @else
+                                                                <img class="avatar-img rounded-circle"
                                                                     src="{{ URL::to('images/photo_defaults.jpg') }}"
-                                                                    width="20%" height="20%">
+                                                                    alt="{{ $list->full_name }}">
+                                                            @endif
                                                             </a>
                                                         </div>
                                                         <div class="student-content pb-0">

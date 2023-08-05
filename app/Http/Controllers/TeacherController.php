@@ -21,18 +21,19 @@ class TeacherController extends Controller
     /** teacher list */
     public function teacherList()
     {
-        $listTeacher = DB::table('users')
-            ->join('teachers','teachers.teacher_id','users.user_id')
-            ->select('users.user_id','users.name','users.avatar','teachers.id','teachers.gender','teachers.mobile','teachers.address')
-            ->get();
-        return view('teacher.list-teachers',compact('listTeacher'));
+        $listTeacher = Teacher::all();
+        // $listTeacher = DB::table('users')
+        //     ->join('teachers','teachers.teacher_id','users.user_id')
+        //     ->select('users.user_id','users.name','users.avatar','teachers.id','teachers.gender','teachers.mobile','teachers.address')
+        //     ->get();
+        return view('teacher.list-teachers', compact('listTeacher'));
     }
 
     /** teacher Grid */
     public function teacherGrid()
     {
         $teacherGrid = Teacher::all();
-        return view('teacher.teachers-grid',compact('teacherGrid'));
+        return view('teacher.teachers-grid', compact('teacherGrid'));
     }
 
     /** save record */
@@ -58,25 +59,19 @@ class TeacherController extends Controller
         ]);
 
         try {
-        
-            $dt        = Carbon::now();
-            $todayDate = $dt->toDayDateTimeString();
+
+            // $dt        = Carbon::now();
+            // $todayDate = $dt->toDayDateTimeString();
+            $user_id = DB::table('teachers')->select('id')->orderBy('id', 'DESC')->first();
             
-                //  teslim please remove this when needed 
-            User::create([
-                'name'      => $request->full_name,
-                'email'     => $request->email,
-                'join_date' => $todayDate,
-                'role_name' => 'Teacher',
-                'password'  => Hash::make($request->password),
-            ]);
-            // stop
-            $user_id = DB::table('users')->select('user_id')->orderBy('id','DESC')->first();
-            
+
             $saveRecord = new Teacher;
-            $saveRecord->teacher_id    = $user_id->user_id;
+            $saveRecord->teacher_id    = "00".$user_id->id;
             $saveRecord->full_name     = $request->full_name;
+            $saveRecord->email     = $request->email;
+            $saveRecord->password     = Hash::make($request->password);
             $saveRecord->gender        = $request->gender;
+            $saveRecord->role_name        = 'Teacher';
             $saveRecord->date_of_birth = $request->date_of_birth;
             $saveRecord->mobile        = $request->mobile;
             $saveRecord->joining_date  = $request->joining_date;
@@ -89,13 +84,13 @@ class TeacherController extends Controller
             $saveRecord->zip_code      = $request->zip_code;
             $saveRecord->country       = $request->country;
             $saveRecord->save();
-   
-            Toastr::success('Has been add successfully :)','Success');
+
+            Toastr::success('Has been add successfully :)', 'Success');
             return redirect()->back();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             \Log::info($e);
             DB::rollback();
-            Toastr::error('fail, Add new record  :)','Error');
+            Toastr::error('fail, Add new record  :)', 'Error');
             return redirect()->back();
         }
     }
@@ -103,8 +98,8 @@ class TeacherController extends Controller
     /** edit record */
     public function editRecord($id)
     {
-        $teacher = Teacher::where('id',$id)->first();
-        return view('teacher.edit-teacher',compact('teacher'));
+        $teacher = Teacher::where('id', $id)->first();
+        return view('teacher.edit-teacher', compact('teacher'));
     }
 
     /** update record teacher */
@@ -128,15 +123,14 @@ class TeacherController extends Controller
                 'zip_code'      => $request->zip_code,
                 'country'      => $request->country,
             ];
-            Teacher::where('id',$request->id)->update($updateRecord);
-            
-            Toastr::success('Has been update successfully :)','Success');
+            Teacher::where('id', $request->id)->update($updateRecord);
+
+            Toastr::success('Has been update successfully :)', 'Success');
             DB::commit();
             return redirect()->back();
-           
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('fail, update record  :)','Error');
+            Toastr::error('fail, update record  :)', 'Error');
             return redirect()->back();
         }
     }
@@ -149,11 +143,11 @@ class TeacherController extends Controller
 
             Teacher::destroy($request->id);
             DB::commit();
-            Toastr::success('Deleted record successfully :)','Success');
+            Toastr::success('Deleted record successfully :)', 'Success');
             return redirect()->back();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('Deleted record fail :)','Error');
+            Toastr::error('Deleted record fail :)', 'Error');
             return redirect()->back();
         }
     }

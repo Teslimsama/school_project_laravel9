@@ -8,7 +8,7 @@
                     <div class="col">
                         <h3 class="page-title">Edit User</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="time-table.html">Users</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('list/users')}}">Users</a></li>
                             <li class="breadcrumb-item active">Edit User</li>
                         </ul>
                     </div>

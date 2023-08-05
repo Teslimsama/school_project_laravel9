@@ -24,28 +24,20 @@
             @if (in_array($userRole, $allowedRoles))
                 @if ($userRole === 'Super Admin' || $userRole === 'Admin')
                     <div class="subject-group-form">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search by ID ..." />
+                        <form action="" method="post">
+                            <div class="row">
+                                <div class="col-lg-10 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search by Name ...">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="search-student-btn">
+                                        <button type="btn" class="btn btn-primary">Search</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search by Name ..." />
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search by Class ..." />
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="search-subject-btn">
-                                    <button type="btn" class="btn btn-primary">Search</button>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
@@ -70,12 +62,6 @@
                                             class="table border-0 star-subject table-hover table-center mb-0 datatable table-striped">
                                             <thead class="subject-thread">
                                                 <tr>
-                                                    <th>
-                                                        <div class="form-check check-tables">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="something" />
-                                                        </div>
-                                                    </th>
                                                     <th>ID</th>
                                                     <th>Name</th>
                                                     <th>Class</th>
@@ -85,12 +71,6 @@
                                             <tbody>
                                                 @foreach ($subjectList as $key => $list)
                                                     <tr>
-                                                        <td>
-                                                            <div class="form-check check-tables">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="something" />
-                                                            </div>
-                                                        </td>
                                                         <td hidden class="id">{{ $list->id }}</td>
                                                         <td>PRE{{ $list->id }}</td>
                                                         <td>
@@ -151,7 +131,7 @@
                                                             data-cfemail="711b1e191f311409101c011d145f121e1c">[email&#160;protected]</a>
                                                     </td>
                                                 </tr>
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -160,7 +140,7 @@
                         </div>
 
                     </div>
-                    @elseif ($userRole === 'Student')
+                @elseif ($userRole === 'Student')
                     {{-- students view --}}
                     <div class="row">
                         <div class="col-lg-12">
@@ -190,7 +170,7 @@
                                                             data-cfemail="711b1e191f311409101c011d145f121e1c">[email&#160;protected]</a>
                                                     </td>
                                                 </tr>
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>

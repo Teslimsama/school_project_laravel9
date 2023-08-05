@@ -17,28 +17,20 @@
             </div>
 
             <div class="student-group-form">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search by ID ...">
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search by Name ...">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-student-btn">
+                                <button type="btn" class="btn btn-primary">Search</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search by Name ...">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search by Phone ...">
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="search-student-btn">
-                            <button type="btn" class="btn btn-primary">Search</button>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -67,54 +59,36 @@
                                     class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
                                     <thead class="student-thread">
                                         <tr>
-                                            <th>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="something">
-                                                </div>
-                                            </th>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Class</th>
                                             <th>Gender</th>
-                                            <th>Subject</th>
-                                            <th>Section</th>
                                             <th>Mobile Number</th>
-                                            <th>Address</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($listTeacher as $list)
                                             <tr>
-                                                <td>
-                                                    <div class="form-check check-tables">
-                                                        <input class="form-check-input" type="checkbox" value="something">
-                                                    </div>
-                                                </td>
                                                 <td hidden class="id">{{ $list->id }}</td>
-                                                <td>{{ $list->user_id }}</td>
+                                                <td>{{ $list->id }}</td>
                                                 <td>
                                                     <h2 class="table-avatar">
-                                                        <a href="teacher-details.html" class="avatar avatar-sm me-2">
+                                                        <a class="avatar avatar-sm me-2">
                                                             @if (!empty($list->avatar))
                                                                 <img class="avatar-img rounded-circle"
                                                                     src="{{ URL::to('images/' . $list->avatar) }}"
-                                                                    alt="{{ $list->name }}">
+                                                                    alt="{{ $list->full_name }}">
                                                             @else
                                                                 <img class="avatar-img rounded-circle"
                                                                     src="{{ URL::to('images/photo_defaults.jpg') }}"
-                                                                    alt="{{ $list->name }}">
+                                                                    alt="{{ $list->full_name }}">
                                                             @endif
                                                         </a>
-                                                        <a href="teacher-details.html">{{ $list->name }}</a>
+                                                        {{ $list->full_name }}
                                                     </h2>
                                                 </td>
-                                                <td>10</td>
                                                 <td>{{ $list->gender }}</td>
-                                                <td>Mathematics</td>
-                                                <td>A</td>
                                                 <td>{{ $list->mobile }}</td>
-                                                <td>{{ $list->address }}</td>
                                                 <td class="text-end">
                                                     <div class="actions">
                                                         <a href="{{ url('teacher/edit/' . $list->id) }}"

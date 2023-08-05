@@ -117,7 +117,7 @@ class UserManagementController extends Controller
 
     /** change password */
     public function changePassword(Request $request)
-    {//dd($request->current_password);
+    {
         $request->validate([
             'current_password'     => ['required'],
             'new_password'         => ['required'],
@@ -125,16 +125,17 @@ class UserManagementController extends Controller
         ]);
         $user = Auth::user();
         // dd($request->current_password=== $user->password);
-        if (!Hash::check($request->current_password , $user->password)) {
+        if (!Hash::check($user->password,$request->current_password)) {
             # code...
             User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+            // dd($request->current_password);
             DB::commit();
             Toastr::success('User change successfully :)', 'Success');
-            return redirect()->intended('/user/profile/page#password_tab');
+            return redirect()->intended('/user/profile/page');
         } else {
             // dd('bad');
-            Toastr::error('User change successfully :)', 'Error');
-            return redirect()->intended('/user/profile/page#password_tab');
+            Toastr::error('User change fail :)', 'Error');
+            return redirect()->intended('/user/profile/page');
         }
     }
 }

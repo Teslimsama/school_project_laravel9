@@ -55,12 +55,6 @@
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <h2 class="table-avatar">
-                                                            <a
-                                                                href="{{ url('student/profile/' . $list->id) }}"class="avatar avatar-sm me-2">
-                                                                <img class="avatar-img rounded-circle"
-                                                                    src="{{ Storage::url('student-photos/' . $list->upload) }}"
-                                                                    alt="User Image">
-                                                            </a>
                                                             <a href="{{ url('feescollection/edit/' . $list->id) }}">{{ $list->name }}
                                                                 </a>
                                                         </h2>
@@ -126,7 +120,7 @@
     // Function to update the data with AJAX
     function updateData(id, newValue) {
         $.ajax({
-            url: "{{ route('update-data', ':id') }}".replace(':id', id),
+            url: "{{ route('updatedata/feecollection', ':id') }}".replace(':id', id),
             type: "put",
             data: {
                 new_value: newValue,

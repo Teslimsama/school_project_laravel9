@@ -214,7 +214,7 @@ Route::controller(FeeCollectionController::class)->group(function () {
     Route::post('feescollection/update', 'FeescollectionUpdate')->name('feescollection/update');
     Route::post('feescollection/delete', 'FeescollectionDelete')->name('feescollection/delete');
     Route::get('feescollection/edit/{id}', 'FeescollectionEdit')->middleware('auth');
-    Route::put('/update-data/{id}', 'update')->name('update-data');
+    Route::put('feecollection/updatedata/{id}', 'update')->name('updatedata/feecollection');
 });
 
 Route::controller(FeesController::class)->group(function () {
@@ -241,7 +241,7 @@ Route::controller(SalaryController::class)->group(function () {
     Route::post('salary/add/save', 'salarySave')->name('salary/add/save'); // save record salary
     Route::get('salary/edit/{id}', 'salaryEdit'); // view for edit
     Route::post('salary/update', 'salaryUpdate')->name('salary/update'); // update record expenses
-    Route::put('/update-data/{id}', 'update')->name('update-data');
+    Route::put('salary/updatedata/{id}', 'update')->name('salary/update-data');
     Route::post('salary/delete', 'salaryDelete')->name('salary/delete'); // delete record salary
 });
 
@@ -273,7 +273,7 @@ Route::controller(LibraryController::class)->group(function () {
     Route::post('library/update', 'libraryUpdate')->name('library/update'); // update record library
     Route::post('library/delete', 'elibraryelete')->name('library/delete'); // delete record library
     Route::get('/getdepartment', 'getdepartmentClasses');
-    Route::put('/update-data/{id}', 'update')->name('library/update-data');
+    Route::put('library/updatedata/{id}', 'update')->name('library/update-data');
 });
 // ----------------------- blank page -----------------------------//
 Route::controller(blankPageController::class)->group(function () {
