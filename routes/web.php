@@ -23,6 +23,7 @@ use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\TimeTableController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -278,4 +279,9 @@ Route::controller(LibraryController::class)->group(function () {
 // ----------------------- blank page -----------------------------//
 Route::controller(blankPageController::class)->group(function () {
     Route::get('blank/page', 'LetsGo')->name('blank/page');
+});
+// -----------------------  paystack payment -----------------------------//
+Route::controller(PaymentController::class)->group(function () {
+    Route::post('/pay', 'redirectToGateway')->name('pay');
+    Route::get('/payment/callback', 'handleGatewayCallback');
 });

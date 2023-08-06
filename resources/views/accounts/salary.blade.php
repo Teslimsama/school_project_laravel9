@@ -58,7 +58,7 @@
                                                     </h2>
                                                 </td>
                                                 <td>{{ $list->date }}</td>
-                                                <td>${{ $list->amount }}</td>
+                                                <td>&#8358;{{ $list->amount }}</td>
                                                 <td class="text-end">
                                                     <span class="payment-status toggle-button badge badge-{{status($list->status)}}" data-id="{{ $list->id}}">{{ $list->status }}</span>
                                                 </td>

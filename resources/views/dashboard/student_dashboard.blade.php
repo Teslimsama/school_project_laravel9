@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 @section('content')
     {{-- message --}}
@@ -9,9 +8,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-sub-header">
-                            <h3 class="page-title">Welcome Bruklin!</h3>
+                            <h3 class="page-title">Welcome {{ Session::get('name') }}!</h3>
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a>Home</a></li>
                                 <li class="breadcrumb-item active">Student</li>
                             </ul>
                         </div>
@@ -35,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                {{-- <div class="col-xl-3 col-sm-6 col-12 d-flex">
                     <div class="card bg-comman w-100">
                         <div class="card-body">
                             <div class="db-widgets d-flex justify-content-between align-items-center">
@@ -44,7 +43,7 @@
                                     <h3>40/60</h3>
                                 </div>
                                 <div class="db-icon">
-                                    <img src="{{URL::to('assets/img/icons/teacher-icon-02.svg')}}" alt="Dashboard Icon">
+                                    <img src="{{ URL::to('assets/img/icons/teacher-icon-02.svg') }}" alt="Dashboard Icon">
                                 </div>
                             </div>
                         </div>
@@ -59,7 +58,7 @@
                                     <h3>30/50</h3>
                                 </div>
                                 <div class="db-icon">
-                                    <img src="{{URL::to('assets/img/icons/student-icon-01.svg')}}" alt="Dashboard Icon">
+                                    <img src="{{ URL::to('assets/img/icons/student-icon-01.svg') }}" alt="Dashboard Icon">
                                 </div>
                             </div>
                         </div>
@@ -74,12 +73,12 @@
                                     <h3>15/20</h3>
                                 </div>
                                 <div class="db-icon">
-                                    <img src="{{URL::to('assets/img/icons/student-icon-02.svg')}}" alt="Dashboard Icon">
+                                    <img src="{{ URL::to('assets/img/icons/student-icon-02.svg') }}" alt="Dashboard Icon">
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <div class="row">
@@ -90,7 +89,7 @@
                                 <div class="col-6">
                                     <h5 class="card-title">Today’s Lesson</h5>
                                 </div>
-                                <div class="col-6">
+                                {{-- <div class="col-6">
                                     <ul class="chart-list-out">
                                         <li>
                                             <span class="circle-blue"></span>
@@ -98,12 +97,13 @@
                                             <span class="circle-gray"></span>
                                         </li>
                                         <li class="lesson-view-all"><a href="#">View All</a></li>
-                                        <li class="star-menus"><a href="javascript:;"><i class="fas fa-ellipsis-v"></i></a></li>
+                                        <li class="star-menus"><a href="javascript:;"><i class="fas fa-ellipsis-v"></i></a>
+                                        </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
-                        <div class="dash-circle">
+                        {{-- <div class="dash-circle">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 dash-widget1">
                                     <div class="circle-bar circle-bar2">
@@ -116,7 +116,8 @@
                                     <div class="dash-details">
                                         <div class="lesson-activity">
                                             <div class="lesson-imgs">
-                                                <img src="{{URL::to('assets/img/icons/lesson-icon-01.svg')}}" alt="">
+                                                <img src="{{ URL::to('assets/img/icons/lesson-icon-01.svg') }}"
+                                                    alt="">
                                             </div>
                                             <div class="views-lesson">
                                                 <h5>Class</h5>
@@ -125,7 +126,8 @@
                                         </div>
                                         <div class="lesson-activity">
                                             <div class="lesson-imgs">
-                                                <img src="{{URL::to('assets/img/icons/lesson-icon-02.svg')}}" alt="">
+                                                <img src="{{ URL::to('assets/img/icons/lesson-icon-02.svg') }}"
+                                                    alt="">
                                             </div>
                                             <div class="views-lesson">
                                                 <h5>Lessons</h5>
@@ -134,7 +136,8 @@
                                         </div>
                                         <div class="lesson-activity">
                                             <div class="lesson-imgs">
-                                                <img src="{{URL::to('assets/img/icons/lesson-icon-03.svg')}}" alt="">
+                                                <img src="{{ URL::to('assets/img/icons/lesson-icon-03.svg') }}"
+                                                    alt="">
                                             </div>
                                             <div class="views-lesson">
                                                 <h5>Time</h5>
@@ -147,7 +150,8 @@
                                     <div class="dash-details">
                                         <div class="lesson-activity">
                                             <div class="lesson-imgs">
-                                                <img src="{{URL::to('assets/img/icons/lesson-icon-04.svg')}}" alt="">
+                                                <img src="{{ URL::to('assets/img/icons/lesson-icon-04.svg') }}"
+                                                    alt="">
                                             </div>
                                             <div class="views-lesson">
                                                 <h5>Asignment</h5>
@@ -156,7 +160,8 @@
                                         </div>
                                         <div class="lesson-activity">
                                             <div class="lesson-imgs">
-                                                <img src="{{URL::to('assets/img/icons/lesson-icon-05.svg')}}" alt="">
+                                                <img src="{{ URL::to('assets/img/icons/lesson-icon-05.svg') }}"
+                                                    alt="">
                                             </div>
                                             <div class="views-lesson">
                                                 <h5>Staff</h5>
@@ -165,7 +170,8 @@
                                         </div>
                                         <div class="lesson-activity">
                                             <div class="lesson-imgs">
-                                                <img src="{{URL::to('assets/img/icons/lesson-icon-06.svg')}}" alt="">
+                                                <img src="{{ URL::to('assets/img/icons/lesson-icon-06.svg') }}"
+                                                    alt="">
                                             </div>
                                             <div class="views-lesson">
                                                 <h5>Lesson Learned</h5>
@@ -181,10 +187,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row">
-                        <div class="col-12 col-lg-12 col-xl-12 d-flex">
+                        {{-- <div class="col-12 col-lg-12 col-xl-12 d-flex">
                             <div class="card flex-fill comman-shadow">
                                 <div class="card-header">
                                     <div class="row align-items-center">
@@ -205,7 +211,7 @@
                                     <div id="apexcharts-area"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-12 col-lg-12 col-xl-12 d-flex">
                             <div class="card flex-fill comman-shadow">
                                 <div class="card-header d-flex align-items-center">
@@ -278,15 +284,15 @@
                 <div class="col-12 col-lg-12 col-xl-4 d-flex">
                     <div class="card flex-fill comman-shadow">
                         <div class="card-body">
-                            <div id="calendar-doctor" class="calendar-container"></div>
+                            {{-- <div id="calendar-doctor" class="calendar-container"></div> --}}
                             <div class="calendar-info calendar-info1">
                                 <div class="up-come-header">
                                     <h2>Upcoming Events</h2>
-                                    <span><a href="javascript:;"><i class="feather-plus"></i></a></span>
+                                    {{-- <span><a href="javascript:;"><i class="feather-plus"></i></a></span> --}}
                                 </div>
                                 <div class="upcome-event-date">
                                     <h3>10 Jan</h3>
-                                    <span><i class="fas fa-ellipsis-h"></i></span>
+                                    {{-- <span><i class="fas fa-ellipsis-h"></i></span> --}}
                                 </div>
                                 <div class="calendar-details">
                                     <p>08:00 am</p>
@@ -320,7 +326,7 @@
                                 </div>
                                 <div class="upcome-event-date">
                                     <h3>10 Jan</h3>
-                                    <span><i class="fas fa-ellipsis-h"></i></span>
+                                    {{-- <span><i class="fas fa-ellipsis-h"></i></span> --}}
                                 </div>
                                 <div class="calendar-details">
                                     <p>08:00 am</p>

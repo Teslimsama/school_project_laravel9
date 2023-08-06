@@ -30,7 +30,7 @@ class subjectController extends Controller
         } elseif ($userRole === 'Student') {
             $studentclass = Session::get('class');
 
-            $result = Timetable::select('event_name', 'event_time', 'event_date', 'class')
+            $studentresult = Timetable::select('event_name', 'event_time', 'event_date', 'class')
                 ->where('class', $studentclass)
                 ->distinct()
                 ->get();

@@ -14,6 +14,15 @@
                     </div>
                 </div>
             </div>
+            <style>
+                /* Add this CSS to your existing styles or create a new CSS file */
+                .code-set2,
+                .code-set3 {
+                    display: none;
+                    /* Hide the code sets by default */
+                    margin-top: 20px;
+                }
+            </style>
 
             {{-- message --}}
             {!! Toastr::message() !!}
@@ -92,31 +101,88 @@
                                 <div class="card-header">
                                     <h5 class="card-title">Your School Fees</h5>
                                 </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>S/N</th>
-                                                    <th>Fees</th>
-                                                    <th>Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($studentresult as $key => $list)
-                                                    <tr>
-                                                        <td>{{ ++$key }}</td>
-                                                        <td>{{ $list->name }}</td>
-                                                        <td>${{ $list->amount }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
+                                <div class="element-size-100">
+                                    <div class="cs-team team-grid  table-responsive ">
+                                        <table class="table table-bordered table-stripped" style="font-size:12px;">
+                                            <tr>
+                                                <th>Name:</th>
+                                                <td>{{ Session::get('first_name') }} {{ Session::get('last_name') }}</td>
+                                                <th>Admission Number:</th>
+                                                <td>{{ Session::get('admission_id') }}</td>
+                                                <th>Session:</th>
+                                                <td>2021/2022</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Class:</th>
+                                                <td>{{ Session::get('class') }}</td>
+                                                <th>Phone Number:</th>
+                                                <td>{{ Session::get('phone_number') }}</td>
+                                                <th>Email:</th>
+                                                <td>{{ Session::get('email') }}</td>
+                                            </tr>
+
                                         </table>
+                                    </div>
+                                    <hr>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S/N</th>
+                                                        <th>Fees</th>
+                                                        <th>Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $totalPrice = 0; // Initialize the variable to store the sum
+                                                    @endphp
+                                                    @foreach ($studentresult as $key => $list)
+                                                        <tr>
+                                                            <td>{{ ++$key }}</td>
+                                                            <td>{{ $list->name }}</td>
+                                                            <td>&#8358;{{ $list->amount }}</td>
+                                                        </tr>
+                                                        @php
+                                                            
+                                                            $totalPrice += $list->amount; // Add the price of the current item to the total
+                                                        @endphp
+                                                    @endforeach
+                                                    <tr>
+                                                        <td></td>
+                                                        <th class="text-right">Total</th>
+                                                        <th>&#8358;{{ $totalPrice }}</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4 col-sm-3"></div>
+                                            <div class="col-4 col-sm-3"></div>
+                                            <div class="invoice-setting-btn  col-sm-6">
+                                                <select id="codeSelector" class="select form-control">
+                                                    <option value="code1">Paystack</option>
+                                                    <option value="code2">Flutterwave</option>
+                                                    <option value="code3">Bank Transfer</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div id="code1" class="invoice-setting-btn code-set text-end">
+                                            <button type="submit" class="btn btn-primary-save-bg">Pay</button>
+                                        </div>
+
+                                        <div id="code2" class="invoice-setting-btn code-set text-end code-set2">
+                                            <button type="submit" class="btn btn-primary-save-bg">Pay</button>
+                                        </div>
+
+                                        <div id="code3" class="invoice-setting-btn code-set text-end code-set2">
+                                            <button type="submit" class="btn btn-primary-save-bg">Pay</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 @endif
             @endif
         </div>
@@ -157,6 +223,16 @@
             var _this = $(this).parents('tr');
             $('.e_id').val(_this.find('.id').text());
 
+        });
+    </script>
+    <!-- Add this JavaScript after including jQuery -->
+    <script>
+        $(document).ready(function() {
+            $("#codeSelector").change(function() {
+                var selectedCode = $(this).val();
+                $(".code-set").hide(); // Hide all code sets
+                $("#" + selectedCode).show(); // Show the selected code set
+            });
         });
     </script>
 @endsection

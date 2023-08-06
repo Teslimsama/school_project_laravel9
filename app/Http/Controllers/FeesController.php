@@ -20,8 +20,8 @@ class FeesController extends Controller
             $feesList = Fees::all();
             return view('fees.fees', compact('feesList'));
         } elseif ($userRole === 'Student') {
-            // $studentclass = 1; 
-            $studentclass = Session::get('class');
+            $studentclass = 1; 
+            // $studentclass = Session::get('class');
 
             $studentresult = Fees::select('name', 'amount', 'class')
                 ->where('class', $studentclass)

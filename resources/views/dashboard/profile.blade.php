@@ -7,7 +7,19 @@
                     <div class="col">
                         <h3 class="page-title">Profile</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+                            @php
+                                $allowedRoles = ['Super Admin', 'Admin', 'Accounting', 'Student', 'Teachers'];
+                                $userRole = Session::get('role_name');
+                            @endphp
+                            @if (in_array($userRole, $allowedRoles))
+                                @if ($userRole === 'Super Admin' || $userRole === 'Admin' || $userRole === 'Accounting')
+                                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+                                    @elseif($userRole === 'Student')
+                                    <li class="breadcrumb-item"><a href="{{ route('student/dashboard') }}">Dashboard</a></li>
+                                    @elseif($userRole === 'Teachers')
+                                    <li class="breadcrumb-item"><a href="{{ route('teacher/dashboard') }}">Dashboard</a></li>
+                                @endif
+                            @endif
                             <li class="breadcrumb-item active">Profile</li>
                         </ul>
                     </div>

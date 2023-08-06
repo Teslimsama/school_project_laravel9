@@ -61,7 +61,7 @@
                                                     </h2>
                                                 </td>
                                                 <td>{{ $list->item_quantity }}</td>
-                                                <td>${{ $list->amount }}</td>
+                                                <td>&#8358;{{ $list->amount }}</td>
                                                 <td>{{ $list->purchase_source }}</td>
                                                 <td>{{ $list->purchase_date }}</td>
                                                 <td>{{ $list->purchase_by }}</td>
