@@ -42,6 +42,14 @@
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
+                                            <label>Teacher <span class="login-danger">*</span></label>
+                                            <select class="form-control select" id="teacher" name="teacher">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
                                             <label>Language <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="language">
                                                 <option>Select Language</option>
@@ -53,10 +61,13 @@
                                             </select>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Department <span class="login-danger">*</span></label>
-                                            <input type="text" name="department" value="{{$libraryEdit->department}}" class="form-control">
+                                            <select class="form-control select" id="department" name="department">
+
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
@@ -116,4 +127,33 @@
             </div>
         </div>
     </div>
+    
+    @section('script')
+    <script>
+        $(document).ready(function() {
+            // Fetch departments and classes on page load
+            $.ajax({
+                url: '/getdepartment',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var departmentSelect = $('#department');
+                    departmentSelect.empty();
+                    departmentSelect.append('<option value="">Select department</option>');
+                    $.each(data.department, function(id, name) {
+                        departmentSelect.append('<option value="' + name + '">' + name +
+                            '</option>');
+                        });
+                        
+                        var teacherSelect = $('#teacher');
+                        teacherSelect.empty();
+                        teacherSelect.append('<option value="">Select teacher</option>');
+                        $.each(data.teacher, function(id, name) {
+                            teacherSelect.append('<option value="' + id + '">' + name + '</option>');
+                        });
+                    }
+                });
+            });
+            </script>
+            @endsection
 @endsection

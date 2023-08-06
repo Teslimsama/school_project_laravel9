@@ -16,80 +16,158 @@
             </div>
             {{-- message --}}
             {!! Toastr::message() !!}
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card card-table">
-                        <div class="card-body">
+            @php
+                $allowedRoles = ['Super Admin', 'Admin', 'Accounting', 'Student', 'Teachers'];
+                $userRole = Session::get('role_name');
+            @endphp
+            @if (in_array($userRole, $allowedRoles))
+                @if ($userRole === 'Super Admin' || $userRole === 'Admin')
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-table">
+                                <div class="card-body">
 
-                            <div class="page-header">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <h3 class="page-title">Library</h3>
+                                    <div class="page-header">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <h3 class="page-title">Library</h3>
+                                            </div>
+                                            <div class="col-auto text-end float-end ms-auto download-grp">
+                                                <a href="#" class="btn btn-outline-primary me-2"><i
+                                                        class="fas fa-download"></i> Download</a>
+                                                <a href="{{ route('library/add/page') }}" class="btn btn-primary"><i
+                                                        class="fas fa-plus"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="#" class="btn btn-outline-primary me-2"><i
-                                                class="fas fa-download"></i> Download</a>
-                                        <a href="{{ route('library/add/page') }}" class="btn btn-primary"><i
-                                                class="fas fa-plus"></i></a>
+
+                                    <div class="table-responsive">
+                                        <table
+                                            class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
+                                            <thead class="student-thread">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Language</th>
+                                                    <th>Department</th>
+                                                    <th>Class</th>
+                                                    <th>Type</th>
+                                                    <th>Status</th>
+                                                    <th class="text-end">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($libraryList as $key => $list)
+                                                    <tr>
+                                                        <td hidden class="id">{{ $list->id }}</td>
+                                                        <td>PRE{{ $list->id }}</td>
+                                                        <td>
+                                                            <h2>
+                                                                <a>{{ $list->book_name }}</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>{{ $list->language }}</td>
+                                                        <td>{{ $list->department }}</td>
+                                                        <td>{{ $list->class }}</td>
+                                                        <td>{{ $list->type }}</td>
+                                                        <td>
+                                                            <span
+                                                                class="payment-status toggle-button badge badge-{{ librarystatus($list->status) }}"
+                                                                data-id="{{ $list->id }}">{{ $list->status }}</span>
+                                                        </td>
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a href="{{ url('library/edit/' . $list->id) }}"
+                                                                    class="btn btn-sm bg-danger-light">
+                                                                    <i class="feather-edit"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm bg-danger-light library_delete"
+                                                                    data-bs-toggle="modal" data-bs-target="#libraryModal">
+                                                                    <i class="feather-trash-2 me-1"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="table-responsive">
-                                <table
-                                    class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
-                                    <thead class="student-thread">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Language</th>
-                                            <th>Department</th>
-                                            <th>Class</th>
-                                            <th>Type</th>
-                                            <th>Status</th>
-                                            <th class="text-end">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($libraryList as $key => $list)
-                                            <tr>
-                                                <td hidden class="id">{{ $list->id }}</td>
-                                                <td>PRE{{ $list->id }}</td>
-                                                <td>
-                                                    <h2>
-                                                        <a>{{ $list->book_name }}</a>
-                                                    </h2>
-                                                </td>
-                                                <td>{{ $list->language }}</td>
-                                                <td>{{ $list->department }}</td>
-                                                <td>{{ $list->class }}</td>
-                                                <td>{{ $list->type }}</td>
-                                                <td>
-                                                    <span
-                                                        class="payment-status toggle-button badge badge-{{ librarystatus($list->status) }}"
-                                                        data-id="{{ $list->id }}">{{ $list->status }}</span>
-                                                </td>
-                                                <td class="text-end">
-                                                    <div class="actions">
-                                                        <a href="{{ url('library/edit/' . $list->id) }}"
-                                                            class="btn btn-sm bg-danger-light">
-                                                            <i class="feather-edit"></i>
-                                                        </a>
-                                                        <a class="btn btn-sm bg-danger-light library_delete"
-                                                            data-bs-toggle="modal" data-bs-target="#libraryModal">
-                                                            <i class="feather-trash-2 me-1"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                @elseif ($userRole === 'Teachers')
+                    {{-- teeachers view --}}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Your Teaching Materials</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Book Name</th>
+                                                    <th>Language</th>
+                                                    <th>Class</th>
+                                                    <th>Type</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if ($teacher)
+                                                
+                                                @foreach ($classesWithBooks as $class)
+                                                    <td>{{ $class->book_name }}</td>
+                                                    <td>{{ $class->language }}</td>
+                                                    <td>{{ $class->class_id }}</td>
+                                                    <td>{{ $class->type }}</td>
+                                                @endforeach
+                                            @endif
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                @elseif ($userRole === 'Student')
+                    {{-- students view --}}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Your Textbooks</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Book Name</th>
+                                                    <th>Type</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($studentresult as $key => $list)
+                                                    <tr>
+                                                        <td>{{ $list->book_name }}</td>
+                                                        <td>{{ $list->type }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                @endif
+            @endif
         </div>
 
     </div>
@@ -152,7 +230,7 @@
 
         // Function to toggle the value between 'In Stock'and'Out Stock'
         function toggleValue(element) {
-            var values = ['In Stock','Out Stock'];
+            var values = ['In Stock', 'Out Stock'];
             var currentVal = element.text().trim();
             var nextVal = values[(values.indexOf(currentVal) + 1) % values.length];
             element.text(nextVal);

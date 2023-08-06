@@ -34,6 +34,14 @@
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
+                                            <label>Teacher <span class="login-danger">*</span></label>
+                                            <select class="form-control select" id="teacher" name="teacher">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
                                             <label>Book Name <span class="login-danger">*</span></label>
                                             <input type="text" name="book_name" class="form-control">
                                         </div>
@@ -116,7 +124,7 @@
             </div>
         </div>
     </div>
-    @section('script')
+@section('script')
     <script>
         $(document).ready(function() {
             // Fetch departments and classes on page load
@@ -131,17 +139,18 @@
                     $.each(data.department, function(id, name) {
                         departmentSelect.append('<option value="' + name + '">' + name +
                             '</option>');
-                        });
-                        
-                        // var classSelect = $('#class');
-                        // classSelect.empty();
-                        // classSelect.append('<option value="">Select class</option>');
-                        // $.each(data.classes, function(id, name) {
-                        //     classSelect.append('<option value="' + name + '">' + name + '</option>');
-                        // });
-                    }
-                });
+                    });
+
+                    var teacherSelect = $('#teacher');
+                    teacherSelect.empty();
+                    teacherSelect.append('<option value="">Select teacher</option>');
+                    $.each(data.teacher, function(id, name) {
+                        teacherSelect.append('<option value="' + id + '">' + name +
+                        '</option>');
+                    });
+                }
             });
-            </script>
-            @endsection
+        });
+    </script>
+@endsection
 @endsection

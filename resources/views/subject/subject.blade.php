@@ -65,6 +65,7 @@
                                                     <th>ID</th>
                                                     <th>Name</th>
                                                     <th>Class</th>
+                                                    <th>Teacher</th>
                                                     <th class="text-end">Action</th>
                                                 </tr>
                                             </thead>
@@ -79,6 +80,7 @@
                                                             </h2>
                                                         </td>
                                                         <td>{{ $list->class }}</td>
+                                                        <td>{{ $list->teacher_id }}</td>
                                                         <td class="text-end">
                                                             <div class="actions">
                                                                 <a href="{{ url('subject/edit/' . $list->id) }}"
@@ -107,7 +109,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title">Bordered Table</h5>
+                                    <h5 class="card-title">Your Subjects</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -121,17 +123,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="711b1e191f311409101c011d145f121e1c">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="711b1e191f311409101c011d145f121e1c">[email&#160;protected]</a>
-                                                    </td>
-                                                </tr>
-
+                                                @foreach ($result as $key => $list)
+                                                    <tr>
+                                                        <td>{{ $list->event_name }}</td>
+                                                        <td>{{ $list->class }}</td>
+                                                        <td>{{ date('g:i a', strtotime($list->event_time)) }} - {{ date('g:i a', strtotime($list->event_time . ' +2 hours')) }}</td>
+                                                        <td>{{ $list->event_date }}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -146,7 +145,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title">Bordered Table</h5>
+                                    <h5 class="card-title">Your Subjects</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -160,17 +159,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>John</td>
-                                                    <td>Doe</td>
-                                                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="711b1e191f311409101c011d145f121e1c">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="711b1e191f311409101c011d145f121e1c">[email&#160;protected]</a>
-                                                    </td>
-                                                </tr>
-
+                                                @foreach ($studentresult as $key => $list)
+                                                    <tr>
+                                                        <td>{{ $list->event_name }}</td>
+                                                        <td>{{ $list->class }}</td>
+                                                        <td>{{ date('g:i a', strtotime($list->event_time)) }} -
+                                                            {{ date('g:i a', strtotime($list->event_time . ' +2 hours')) }}
+                                                        </td>
+                                                        <td>{{ $list->event_date }}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

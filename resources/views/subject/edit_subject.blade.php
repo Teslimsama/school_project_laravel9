@@ -29,19 +29,30 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Subject ID <span class="login-danger">*</span></label>
-                                            <input type="hidden" class="form-control" name="id" value="{{$subjectEdit->id}}" readonly>
+                                            <input type="type" class="form-control" name="id"
+                                                value="{{ $subjectEdit->id }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Subject Name <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" name="name" value="{{$subjectEdit->name}}">
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ $subjectEdit->name }}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Class <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" name="class" value="{{$subjectEdit->class}}">
+                                            <input type="text" class="form-control" name="class"
+                                                value="{{ $subjectEdit->class }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Teacher <span class="login-danger">*</span></label>
+                                            <select class="form-control select" id="teacher" name="teacher">
+
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -57,4 +68,33 @@
             </div>
         </div>
     </div>
+@section('script')
+    <script>
+        $(document).ready(function() {
+            // Fetch departments and classes on page load
+            $.ajax({
+                url: '/getdepartment',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var departmentSelect = $('#department');
+                    departmentSelect.empty();
+                    departmentSelect.append('<option value="">Select department</option>');
+                    $.each(data.department, function(id, name) {
+                        departmentSelect.append('<option value="' + name + '">' + name +
+                            '</option>');
+                    });
+
+                    var teacherSelect = $('#teacher');
+                    teacherSelect.empty();
+                    teacherSelect.append('<option value="">Select teacher</option>');
+                    $.each(data.teacher, function(id, name) {
+                        teacherSelect.append('<option value="' + id + '">' + name +
+                            '</option>');
+                    });
+                }
+            });
+        });
+    </script>
+@endsection
 @endsection

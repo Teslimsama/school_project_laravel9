@@ -8,14 +8,31 @@ use App\Models\Subject;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class ExamController extends Controller
 {
     /** index page exam list */
     public function exam()
     {
-        $examList = Exam::all();
-        return view('exam.exam', compact('examList'));
+        $userRole = Session::get('role_name');
+        if ($userRole === 'Super Admin' || $userRole === 'Admin') {
+            $examList = Exam::all();
+            return view('exam.exam', compact('examList'));
+        } elseif ($userRole === 'Teachers') {
+            $examList = Exam::all();
+            return view('exam.exam', compact('examList'));
+        } elseif ($userRole === 'Student') {
+            $studentclass = Session::get('class');
+            // $studentclass = 9;
+            
+            $studentresult = Exam::select('subject', 'start_time','end_time', 'date', 'class')
+                ->where('class', $studentclass)
+                ->distinct()
+                ->get();
+            return view('exam.exam', compact('studentresult'));
+        }
+       
     }
 
     /** exam add page */

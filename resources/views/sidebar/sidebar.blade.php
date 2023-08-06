@@ -385,8 +385,8 @@
                             <a href="{{ route('getevent') }}" class="{{ set_active(['getevent']) }}"><i
                                     class="fas fa-calendar-day"></i> <span>Events</span></a>
                         </li>
-                        <li class="{{ set_active(['titimetable/page']) }}">
-                            <a href="{{ route('titimetable/page') }}"><i class="fas fa-table"></i> <span>Time
+                        <li class="{{ set_active(['timetable/page']) }}">
+                            <a href="{{ route('timetable/page') }}"><i class="fas fa-table"></i> <span>Time
                                     Table</span></a>
                         </li>
                         <li class="{{ set_active(['library/page']) }}">

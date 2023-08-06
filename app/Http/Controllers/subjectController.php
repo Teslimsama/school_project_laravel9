@@ -4,16 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subject;
+use App\Models\Timetable;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class subjectController extends Controller
 {
     public function listSubject()
     {
-        $subjectList = Subject::all();
-        return view('subject.subject', compact('subjectList'));
+        // $allowedRoles = ['Super Admin', 'Admin', 'Accounting', 'Student', 'Teachers'];
+        $userRole = Session::get('role_name');
+        if ($userRole === 'Super Admin' || $userRole === 'Admin') {
+            $subjectList = Subject::all();
+            return view('subject.subject', compact('subjectList'));
+        } elseif ($userRole === 'Teachers') {
+            $teacherId = Session::get('name');
+
+            $result = Timetable::select('event_name', 'event_time', 'event_date', 'class')
+                ->where('teacher_name', $teacherId)
+                ->distinct()
+                ->get();
+            return view('subject.subject', compact('result'));
+        } elseif ($userRole === 'Student') {
+            $studentclass = Session::get('class');
+
+            $result = Timetable::select('event_name', 'event_time', 'event_date', 'class')
+                ->where('class', $studentclass)
+                ->distinct()
+                ->get();
+            return view('subject.subject', compact('studentresult'));
+        }
+
+        // return view('subject.subject', compact('result', 'subjectList'));
     }
     public function subjectIndex()
     {
@@ -23,6 +47,7 @@ class subjectController extends Controller
     {
         $request->validate([
             'name'    => 'required|string',
+            'teacher'    => 'required|string',
             'class'     => 'required|int',
         ]);
 
@@ -32,6 +57,7 @@ class subjectController extends Controller
                 $subject = new Subject;
                 $subject->name   = $request->name;
                 $subject->class    = $request->class;
+                $subject->teacher_id    = $request->teacher;
                 $subject->save();
 
                 Toastr::success('Has been added successfully :)', 'Success');
@@ -56,6 +82,7 @@ class subjectController extends Controller
         $updateRecord = [
             'name'    => $request->name,
             'class'     => $request->class,
+            'teacher_id'     => $request->teacher,
         ];
         DB::beginTransaction();
         try {
