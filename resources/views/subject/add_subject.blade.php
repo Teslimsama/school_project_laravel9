@@ -32,20 +32,6 @@
                                             <input type="text" class="form-control" name="name" placeholder="Botony">
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-4">
-                                        <div class="form-group local-forms">
-                                            <label>Class <span class="login-danger">*</span></label>
-                                            <input type="text" class="form-control" name="class" placeholder="9">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-4">
-                                        <div class="form-group local-forms">
-                                            <label>Teacher <span class="login-danger">*</span></label>
-                                            <select class="form-control select" id="teacher" name="teacher">
-
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="col-12">
                                         <div class="student-submit">
                                             <button type="submit" class="btn btn-primary">Submit</button>

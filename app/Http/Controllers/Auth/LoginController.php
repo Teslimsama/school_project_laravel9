@@ -92,7 +92,6 @@ class LoginController extends Controller
                 // Example: Retrieve the user's role from the session
                 // Replace this with the actual method to get the user's role from the session
                 $userRole = Session::get('role_name'); // Assuming 'role_name' is the key in the session holding the user's role
-
                 if (in_array($userRole, $allowedRoles)) {
                     if ($userRole === 'Super Admin') {
                         Toastr::success('Login successfully :)', 'Success');

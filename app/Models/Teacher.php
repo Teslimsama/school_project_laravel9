@@ -26,6 +26,12 @@ class Teacher extends Model
         'country',
     ];
 
+    public static function subjects()
+    {
+        // Get all registered subject
+        return Subject::all();
+    }
+
     public function libraries()
     {
         return $this->hasMany(Library::class);

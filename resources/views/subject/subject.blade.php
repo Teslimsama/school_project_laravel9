@@ -64,8 +64,6 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Name</th>
-                                                    <th>Class</th>
-                                                    <th>Teacher</th>
                                                     <th class="text-end">Action</th>
                                                 </tr>
                                             </thead>
@@ -79,8 +77,6 @@
                                                                 <a>{{ $list->name }}</a>
                                                             </h2>
                                                         </td>
-                                                        <td>{{ $list->class }}</td>
-                                                        <td>{{ $list->teacher_id }}</td>
                                                         <td class="text-end">
                                                             <div class="actions">
                                                                 <a href="{{ url('subject/edit/' . $list->id) }}"

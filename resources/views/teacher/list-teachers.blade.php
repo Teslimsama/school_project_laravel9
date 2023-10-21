@@ -63,6 +63,7 @@
                                             <th>Name</th>
                                             <th>Gender</th>
                                             <th>Mobile Number</th>
+                                            <th>Subject</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
@@ -89,6 +90,7 @@
                                                 </td>
                                                 <td>{{ $list->gender }}</td>
                                                 <td>{{ $list->mobile }}</td>
+                                                <td></td>
                                                 <td class="text-end">
                                                     <div class="actions">
                                                         <a href="{{ url('teacher/edit/' . $list->id) }}"

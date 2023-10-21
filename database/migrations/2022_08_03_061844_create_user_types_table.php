@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateUserTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('user_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->references('users')->on('id')->onCascade('DELETE');
-            $table->string('name');
-            $table->string('class');
+            $table->string('type_name')->nullable();
             $table->timestamps();
         });
+
+        DB::table('user_types')->insert([
+            ['type_name' => 'Active'],
+            ['type_name' => 'Inactive'],
+            ['type_name' => 'Disable']
+        ]);
     }
 
     /**
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_types');
     }
-};
+}

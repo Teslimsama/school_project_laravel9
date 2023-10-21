@@ -47,20 +47,9 @@
                                             <label>Class <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="class">
                                                 <option>Select Class</option>
-                                                <option>LKG</option>
-                                                <option>UKG</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                                <option>11</option>
-                                                <option>12</option>
+                                                @foreach ($classes as $class)
+                                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -69,13 +58,9 @@
                                             <label>Day <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="day">
                                                 <option>Select Day</option>
-                                                <option>Monday</option>
-                                                <option>Tuesday</option>
-                                                <option>Wednesday</option>
-                                                <option>Thursday</option>
-                                                <option>Friday</option>
-                                                <option>Saturday</option>
-                                                <option>Sunday</option>
+                                                @foreach ($weekDays as $key => $value)
+                                                    <option value="{{ $key }}">{{ $value }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

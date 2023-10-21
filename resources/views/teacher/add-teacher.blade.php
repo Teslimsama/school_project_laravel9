@@ -59,6 +59,7 @@
                                             @enderror
                                         </div>
                                     </div>
+
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms calendar-icon">
                                             <label>Date Of Birth <span class="login-danger">*</span></label>
@@ -252,6 +253,36 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                    <input type="hidden" name="subjects" value="">
+
+                                    <div class="col-12">
+                                        <h5 class="form-title"><span>Subjects</span></h5>
+                                    </div>
+                                    <div class="col-12">
+
+                                        <span class='selected_subjects'>Selected Subjects </span>
+                                        <div class="form-group local-forms">
+                                            <label>Subjects <span class="login-danger">*</span></label>
+                                            <select class="form-control select  @error('gender') is-invalid @enderror"
+                                                name="subject">
+                                                <option selected disabled>Select Subject</option>
+
+                                                @php
+                                                    $subjects = App\Models\Teacher::subjects();
+                                                @endphp
+                                                @foreach ($subjects as $subject)
+                                                    <option value="{{ $subject->name }}"
+                                                        data-name="{{ $subject->name }}">{{ $subject->name }} </option>
+                                                @endforeach
+                                            </select>
+                                            @error('subjects')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="student-submit">
                                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -265,4 +296,43 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            let __hiddenSubject = $("input[name=subjects]");
+
+            $("select[name=subject]").change(function() {
+                let __that = $(this);
+
+                let __subjectName = __that.val();
+
+                let __combinedValues = __hiddenSubject.val();
+
+                let __splitedValuyes = __combinedValues.split(", ");
+                let __filteredArrayValues = __splitedValuyes.filter((e) => {
+                    if (e === __subjectName) {
+                        return e;
+                    }
+                });
+
+                if (__filteredArrayValues.length < 1) {
+
+                    if (__hiddenSubject.val() !== "") {
+                        __combinedValues = `${__combinedValues}, ${__subjectName}`;
+                    } else {
+
+                        __combinedValues = __subjectName;
+                    }
+
+                    __hiddenSubject.val(`${__combinedValues}`);
+
+                    $(".selected_subjects").text(__combinedValues);
+                }
+
+                // console.log(__hiddenSubject.val());
+
+
+            });
+        });
+    </script>
 @endsection

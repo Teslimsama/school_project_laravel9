@@ -9,13 +9,17 @@ use App\Models\Timetable;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Lesson;
+use App\SchoolClass;
+use App\Services\CalendarService;
+
 
 class TimeTableController extends Controller
 {
-    public function Timetable()
+    public function Timetable(CalendarService $calendarService)
     {
         // Fetch all timetable data from the database
-        $timetableData = Timetable::all();
+        $timetableData = lesson::all();
 
         // Group timetable events by day of the week and time slots
         $timetable = [];
@@ -23,14 +27,17 @@ class TimeTableController extends Controller
         foreach ($timetableData as $event) {
             // $dayOfWeek = date('l', strtotime($event->event_date));
             $dayOfWeek = $event->event_date;
-            $startTime = date('g:i a', strtotime($event->event_time));
-            $endTime = date('g:i a', strtotime($event->event_time . ' +2 hours'));
+            $startTime = date('g:i a', strtotime($event->start_time));
+            $endTime = date('g:i a', strtotime($event->end_time));
 
             $timetable[$dayOfWeek][$startTime] = $event->event_name;
         }
 
-        return view('timetable.timetable',compact('timetable','timetableData'));
 
+        $weekDays     = Lesson::WEEK_DAYS;
+        $calendarData = $calendarService->generateCalendarData($weekDays);
+
+        return view('timetable.timetable', compact('timetable', 'timetableData', 'weekDays', 'calendarData'));
     }
 
     // public function TimetableSave(Request $request)
@@ -55,7 +62,10 @@ class TimeTableController extends Controller
     /** Timetable add page */
     public function TimetableAdd()
     {
-        return view('timetable.add_timetable');
+        $classes = DB::table('school_classes')->get();
+        $weekDays     = Lesson::WEEK_DAYS;
+
+        return view('timetable.add_timetable', compact('classes', 'weekDays'));
     }
 
     /** Timetable save record */
@@ -63,12 +73,17 @@ class TimeTableController extends Controller
     {
         $request->validate([
             'day' => 'required|string',
-            'time' => 'required|date_format:H:i',
+            'time' => 'required|date_format:H:i a',
             'subject' => 'required|string|max:255',
             'class'    => 'required|string',
             'teacher'    => 'required|string',
 
         ]);
+
+
+        $time = explode(" ", $request->time)[0];
+
+
 
         DB::beginTransaction();
         try {

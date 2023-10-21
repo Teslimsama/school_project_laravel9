@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateSequenceTblsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('sequence_tbl', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->references('users')->on('id')->onCascade('DELETE');
-            $table->string('name');
-            $table->string('class');
-            $table->timestamps();
         });
     }
 
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sequence_tbl');
     }
-};
+}

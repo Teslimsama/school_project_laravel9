@@ -12,11 +12,14 @@ use Brian2694\Toastr\Facades\Toastr;
 
 class TeacherController extends Controller
 {
+    
     /** add teacher page */
     public function teacherAdd()
     {
         return view('teacher.add-teacher');
     }
+
+
 
     /** teacher list */
     public function teacherList()
@@ -45,6 +48,7 @@ class TeacherController extends Controller
             'date_of_birth'   => 'required|string',
             'mobile'          => 'required|string',
             'joining_date'    => 'required|string',
+            'subjects'          => 'required|max:255',
             'qualification'   => 'required|string',
             'experience'      => 'required|string',
             'username'        => 'required|string',
@@ -58,17 +62,23 @@ class TeacherController extends Controller
             'country'         => 'required|string',
         ]);
 
+
+
         try {
 
             // $dt        = Carbon::now();
             // $todayDate = $dt->toDayDateTimeString();
             $user_id = DB::table('teachers')->select('id')->orderBy('id', 'DESC')->first();
-            
+
+            $subject = explode(",", $request->subjects);
+
+            $subject  = serialize($subject);
 
             $saveRecord = new Teacher;
-            $saveRecord->teacher_id    = "00".$user_id->id;
+            $saveRecord->teacher_id    = "00" . $user_id->id;
             $saveRecord->full_name     = $request->full_name;
             $saveRecord->email     = $request->email;
+            $saveRecord->subjects     = $subject;
             $saveRecord->password     = Hash::make($request->password);
             $saveRecord->gender        = $request->gender;
             $saveRecord->role_name        = 'Teacher';
@@ -88,9 +98,8 @@ class TeacherController extends Controller
             Toastr::success('Has been add successfully :)', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
-            \Log::info($e);
             DB::rollback();
-            Toastr::error('fail, Add new record  :)', 'Error');
+            Toastr::error('fail, Add new record  :)', 'Error ' . $e->getMessage());
             return redirect()->back();
         }
     }

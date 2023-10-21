@@ -46,9 +46,7 @@ class subjectController extends Controller
     public function saveSubject(Request $request)
     {
         $request->validate([
-            'name'    => 'required|string',
-            'teacher'    => 'required|string',
-            'class'     => 'required|int',
+            'name'    => 'required|string|unique:subjects,name',
         ]);
 
         DB::beginTransaction();
@@ -56,8 +54,6 @@ class subjectController extends Controller
             if (!empty($request->name)) {
                 $subject = new Subject;
                 $subject->name   = $request->name;
-                $subject->class    = $request->class;
-                $subject->teacher_id    = $request->teacher;
                 $subject->save();
 
                 Toastr::success('Has been added successfully :)', 'Success');
@@ -67,7 +63,7 @@ class subjectController extends Controller
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
-            Toastr::error('fail, Add new subject  :(', 'Error');
+            Toastr::error('fail, Add new subject  :(', 'Error' . $e->getMessage());
             return redirect()->back();
         }
     }
@@ -81,8 +77,6 @@ class subjectController extends Controller
     {
         $updateRecord = [
             'name'    => $request->name,
-            'class'     => $request->class,
-            'teacher_id'     => $request->teacher,
         ];
         DB::beginTransaction();
         try {

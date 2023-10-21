@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\department;
+use App\Models\Event;
 use App\Models\Student;
+use App\Models\FeesCollection;
 use App\Models\Teacher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,13 +28,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     /** home dashboard */
-    // public function index()
-    // {
-    //     return view('dashboard.home');
-    // }
-    // Dashboard
     public function index()
     {
+        //ADMIN DASHBOARD AREA GRAPH
 
         $dataTeachers = Teacher::select('id', 'created_at')->get()->groupBy(function ($data) {
             return Carbon::parse($data->created_at)->format('M');
@@ -55,6 +54,7 @@ class HomeController extends Controller
         }
 
 
+        //ADMIN DASHBOARD BAR CHART GRAPH
 
         $dataMaleStudents = Student::select('id', 'created_at')->where('gender', 'male')->get()->groupBy(function ($data) {
             return Carbon::parse($data->created_at)->year;
@@ -76,6 +76,12 @@ class HomeController extends Controller
         foreach ($dataFemaleStudents as $month => $values) {
             $femaleStudentCounts[] = count($values);
         }
+        //ADMIN DASHBOARD COUNT
+        $studentCount = Student::count();
+        $departmentCount = department::count();
+        $teacherCount = Teacher::count();
+        $revenueCount = FeesCollection::sum('amount');
+
 
         return view('dashboard.home', [
             'months' => $months,
@@ -85,9 +91,24 @@ class HomeController extends Controller
             'year' => $year,
             'teacherCounts' => $teacherCounts,
             'studentCounts' => $studentCounts,
+
+            'studentCount' => $studentCount,
+            'revenueCount' => $revenueCount,
+            'teacherCount' => $teacherCount,
+            'departmentCount' => $departmentCount,
         ]);
     }
-
+    public function getEvent()
+    {
+        if (request()->ajax()) {
+            if (request()->ajax()) {
+                $events = Event::select('id', 'title', 'start', 'end', 'category')->get();
+                return response()->json($events);
+            }
+        }
+        return response()->json("hi");
+        return view('dashboard.home');
+    }
     /** profile user */
     public function userProfile()
     {

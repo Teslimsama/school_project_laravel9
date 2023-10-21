@@ -12,6 +12,9 @@ use App\Http\Controllers\Setting;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\FacebookAuthController;
+use App\Http\Controllers\TwitterAuthController;
+use App\Http\Controllers\LinkedinAuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\blankPageController;
@@ -24,6 +27,7 @@ use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\TimeTableController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,6 +128,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('user/profile/page', 'userProfile')->middleware('auth')->name('user/profile/page');
     Route::get('teacher/dashboard', 'teacherDashboardIndex')->middleware('auth')->name('teacher/dashboard');
     Route::get('student/dashboard', 'studentDashboardIndex')->middleware('auth')->name('student/dashboard');
+    Route::get('/getevent/home', 'getEvent')->name('getevent/home');
 });
 
 // ----------------------------- user controller -------------------------//
@@ -284,4 +289,7 @@ Route::controller(blankPageController::class)->group(function () {
 Route::controller(PaymentController::class)->group(function () {
     Route::post('/pay', 'redirectToGateway')->name('pay');
     Route::get('/payment/callback', 'handleGatewayCallback');
+});
+Route::controller(CalendarController::class)->group(function () {
+    Route::get('calendar', 'index')->name('calendar.index');
 });
