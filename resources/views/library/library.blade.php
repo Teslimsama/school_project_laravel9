@@ -181,7 +181,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('library/delete') }}" method="POST">
+                    <form action="{{ route('inventory.delete') }}" method="POST">
                         @csrf
                         <div class="delete-wrap text-center">
                             <div class="del-icon">

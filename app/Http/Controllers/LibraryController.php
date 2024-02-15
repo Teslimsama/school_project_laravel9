@@ -9,7 +9,7 @@ use App\Models\Teacher;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class LibraryController extends Controller
 {

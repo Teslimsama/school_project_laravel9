@@ -9,6 +9,8 @@ class Teacher extends Model
 {
     use HasFactory;
 
+    protected $appends = ['name'];
+
     protected $fillable = [
         'teacher_id',
         'full_name',
@@ -23,6 +25,7 @@ class Teacher extends Model
         'city',
         'state',
         'zip_code',
+        'subjects',
         'country',
     ];
 
@@ -35,5 +38,10 @@ class Teacher extends Model
     public function libraries()
     {
         return $this->hasMany(Library::class);
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->full_name;
     }
 }

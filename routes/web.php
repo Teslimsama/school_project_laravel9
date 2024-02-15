@@ -270,6 +270,7 @@ Route::controller(TimeTableController::class)->group(function () {
     Route::post('timetable/update', 'TimetableUpdate')->name('timetable/update'); // update record timetable
     Route::post('timetable/delete', 'TimetableDelete')->name('timetable/delete'); // delete record timetable
     Route::get('/get_subjects_teacher', 'getSubjectsTeacher');
+    Route::get('/get_teacher_subjects/{teacherId}', 'getTeacherSubjects');
 });
 Route::controller(LibraryController::class)->group(function () {
     Route::get('library/page', 'library')->name('library/page');

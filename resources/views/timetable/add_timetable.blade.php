@@ -30,7 +30,9 @@
                                         <div class="form-group local-forms">
                                             <label>Teacher Name <span class="login-danger">*</span></label>
                                             <select id="teacher" name="teacher" class="form-control select">
-                                                <option value="">Select Teacher</option>
+                                                @foreach ($teachers as $teacher)
+                                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -85,30 +87,31 @@
     </div>
 @section('script')
     <script>
-        $(document).ready(function() {
-            // Fetch subjects and classes on page load
+        function __getTeacherSubjects(teacherId) {
             $.ajax({
-                url: '/get_subjects_teacher',
+                url: '/get_teacher_subjects/' + teacherId,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
+                    console.log(data)
                     var subjectSelect = $('#subject');
                     subjectSelect.empty();
                     subjectSelect.append('<option value="">Select subject</option>');
                     $.each(data.subjects, function(id, name) {
-                        subjectSelect.append('<option value="' + name + '">' + name +
-                            '</option>');
-                    });
-
-                    var teacherSelect = $('#teacher');
-                    teacherSelect.empty();
-                    teacherSelect.append('<option value="">Select teacher</option>');
-                    $.each(data.teachers, function(id, name) {
-                        teacherSelect.append('<option value="' + name + '">' + name +
+                        subjectSelect.append('<option value="' + name + '">' +
+                            name +
                             '</option>');
                     });
                 }
             });
+        }
+
+        __getTeacherSubjects($("#teacher").val())
+        $(document).ready(function() {
+            $("#teacher").change(function() {
+                __getTeacherSubjects($(this).val());
+
+            })
         });
     </script>
 @endsection

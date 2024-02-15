@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Lesson;
 use App\SchoolClass;
 use App\Services\CalendarService;
-
+use Carbon\Carbon;
 
 class TimeTableController extends Controller
 {
@@ -35,7 +35,12 @@ class TimeTableController extends Controller
 
 
         $weekDays     = Lesson::WEEK_DAYS;
-        $calendarData = $calendarService->generateCalendarData($weekDays);
+        $userType = auth()->user()->currentUserType();
+        if (in_array($userType, config('enums.allowedUserTypes'))) {
+            $calendarData = $calendarService->getAllCalendarWithAllFields($weekDays);
+        } else {
+            $calendarData = $calendarService->generateCalendarData($weekDays);
+        }
 
         return view('timetable.timetable', compact('timetable', 'timetableData', 'weekDays', 'calendarData'));
     }
@@ -64,16 +69,18 @@ class TimeTableController extends Controller
     {
         $classes = DB::table('school_classes')->get();
         $weekDays     = Lesson::WEEK_DAYS;
+        $teachers = Teacher::get(['full_name', 'id']);
 
-        return view('timetable.add_timetable', compact('classes', 'weekDays'));
+        return view('timetable.add_timetable', compact('classes', 'weekDays', 'teachers'));
     }
 
     /** Timetable save record */
     public function TimetableSave(Request $request)
     {
+
         $request->validate([
             'day' => 'required|string',
-            'time' => 'required|date_format:H:i a',
+            'time' => 'required|date_format:H:i',
             'subject' => 'required|string|max:255',
             'class'    => 'required|string',
             'teacher'    => 'required|string',
@@ -83,7 +90,11 @@ class TimeTableController extends Controller
 
         $time = explode(" ", $request->time)[0];
 
+        dd($time);
 
+        // convert dat int to string 
+        $weekDays = Lesson::WEEK_DAYS;
+        $convertedDay = $weekDays[$request->day];
 
         DB::beginTransaction();
         try {
@@ -93,8 +104,19 @@ class TimeTableController extends Controller
                 $Timetable->class   = $request->class;
                 $Timetable->event_time   = $request->time;
                 $Timetable->teacher_name   = $request->teacher;
-                $Timetable->event_date   = $request->day;
+                $Timetable->event_date   = $convertedDay;
                 $Timetable->save();
+
+
+                Lesson::create([
+                    'weekday' => $request->day,
+                    'class_id' => $request->class,
+                    'end_time' => Carbon::parse($request->time)->addMinutes(30)->toDate()->format('Y-m-d H:i:s'),
+                    'teacher_id' => $request->teacher,
+                    'start_time'  => $request->time,
+                    'subject_id' => Subject::where('name', $request->subject)->first()->id,
+                ]);
+
                 // dd($request->day);
 
                 Toastr::success('Has been add successfully :)', 'Success');
@@ -113,7 +135,8 @@ class TimeTableController extends Controller
     public function TimetableEdit($id)
     {
         $TimetableEdit = Timetable::where('id', $id)->first();
-        return view('timetable.edit_timetable', compact('TimetableEdit'));
+        $teachers = Teacher::get(['full_name', 'id']);
+        return view('timetable.edit_timetable', compact('TimetableEdit', 'teachers'));
     }
 
     /** update record */
@@ -122,11 +145,15 @@ class TimeTableController extends Controller
         DB::beginTransaction();
         try {
 
+            // convert dat int to string 
+            $weekDays = Lesson::WEEK_DAYS;
+            $convertedDay = $weekDays[$request->day];
+
             $updateRecord = [
                 'event_name'   => $request->subject,
                 'class'   => $request->class,
                 'event_time'   => $request->time,
-                'event_date'   => $request->day,
+                'event_date'   => $convertedDay,
                 'teacher_name'   => $request->teacher,
             ];
             Timetable::where('id', $request->id)->update($updateRecord);
@@ -166,6 +193,14 @@ class TimeTableController extends Controller
         return response()->json([
             'subjects' => $subjects,
             'teachers' => $teacher,
+        ]);
+    }
+
+    public function getTeacherSubjects(string $teacherId)
+    {
+        $subjects = Teacher::where('id', $teacherId)->first()->subjects;
+        return response()->json([
+            'subjects' => ($subjects !== null && $subjects !== "") ? unserialize($subjects) : []
         ]);
     }
 }

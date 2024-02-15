@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Models\Teacher;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Lesson extends Model
 {
@@ -25,6 +27,7 @@ class Lesson extends Model
         'end_time',
         'teacher_id',
         'start_time',
+        'subject_id',
         'created_at',
         'updated_at',
         'subject_id',
@@ -53,10 +56,7 @@ class Lesson extends Model
 
     public function setStartTimeAttribute($value)
     {
-        $this->attributes['start_time'] = $value ? Carbon::createFromFormat(
-            config('panel.lesson_time_format'),
-            $value
-        )->format('H:i:s') : null;
+        $this->attributes['start_time'] = $value ? Carbon::createFromTimestamp(strtotime($value))->format('H:i:s') : null;
     }
 
     public function getEndTimeAttribute($value)
@@ -66,13 +66,10 @@ class Lesson extends Model
 
     public function setEndTimeAttribute($value)
     {
-        $this->attributes['end_time'] = $value ? Carbon::createFromFormat(
-            config('panel.lesson_time_format'),
-            $value
-        )->format('H:i:s') : null;
+        $this->attributes['end_time'] = $value ? Carbon::createFromTimestamp(strtotime($value))->format('H:i:s') : null;
     }
 
-    function class()
+    public function class()
     {
         return $this->belongsTo(SchoolClass::class, 'class_id');
     }
@@ -80,6 +77,17 @@ class Lesson extends Model
     public function teacher()
     {
         return $this->belongsTo(User::class, 'teacher_id');
+    }
+
+    public function scopeTeacherName()
+    {
+        return Teacher::where('id', $this->teacher_id)->first();
+    }
+
+    public function schoolClass($id)
+    {
+        $schoolClass = DB::table('school_classes')->where('id', $id)->first();
+        return collect($schoolClass);
     }
 
     public static function isTimeAvailable($weekday, $startTime, $endTime, $class, $teacher, $lesson)
@@ -125,5 +133,9 @@ class Lesson extends Model
     public function scopeGetSubjectName($id)
     {
         return Subject::where('id', $id)->first() ?? '';
+    }
+
+    public function getTeacherSubjects()
+    {
     }
 }

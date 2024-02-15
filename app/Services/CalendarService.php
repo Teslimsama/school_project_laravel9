@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Session;
 
 class CalendarService
 {
-    public function generateCalendarData($weekDays)
+    public function generateCalendarData(array $weekDays, bool $showAllFields = false)
     {
         $calendarData = [];
         $timeRange = (new TimeService)->generateTimeRange(config('app.calendar.start_time'), config('app.calendar.end_time'));
@@ -42,7 +42,7 @@ class CalendarService
                 if ($lesson) {
                     array_push($calendarData[$timeText], [
                         'class_name'   => $lesson->class->name,
-                        'teacher_name' => $lesson->teacher->name,
+                        'teacher_name' => $lesson->teacherName()->full_name,
                         'rowspan'      => $lesson->difference / 30 ?? '',
                         'subject_name' => $lesson->scopeGetSubjectName($lesson->subject_id)->name ?? ''
                     ]);
@@ -50,6 +50,34 @@ class CalendarService
                     array_push($calendarData[$timeText], 1);
                 } else {
                     array_push($calendarData[$timeText], 0);
+                }
+            }
+        }
+
+        return $calendarData;
+    }
+
+    public function getAllCalendarWithAllFields(array $weekDays)
+    {
+        $calendarData = [];
+        $timeRange = (new TimeService)->generateTimeRange(config('app.calendar.start_time'), config('app.calendar.end_time'));
+        $lessons   = Lesson::with('class', 'teacher')
+            ->get();
+        foreach ($timeRange as $time) {
+            $timeText = $time['start'] . ' - ' . $time['end'];
+            $calendarData[$timeText] = [];
+
+            foreach ($weekDays as $index => $key) {
+                $lesson = $lessons->where('weekday', $index)->where('start_time', $time['start'])->first();
+
+                if ($lesson !== null) {
+
+                    array_push($calendarData[$timeText], [
+                        'class_name'   => $lesson->schoolClass($lesson->class_id)['name'],
+                        'teacher_name' => $lesson->teacherName()->full_name,
+                        'rowspan'      => $lesson->difference / 30 ?? '',
+                        'subject_name' => $lesson->scopeGetSubjectName($lesson->subject_id)->name ?? ''
+                    ]);
                 }
             }
         }

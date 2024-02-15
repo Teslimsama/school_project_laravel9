@@ -11,6 +11,13 @@
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Time Table</li>
                         </ul>
+
+                        <div class="col-auto text-end float-end ms-auto download-grp">
+
+                            <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i>
+                                Download</a>
+                            <a href="{{ route('timetable/add/page') }}" class="btn btn-primary">Add New TimeTable</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,7 +125,12 @@
                                                         {{ $value['class_name'] }}<br>
                                                         Teacher: {{ $value['teacher_name'] }} <br>
 
+                                                        @php
+                                                            // dd($value);
+                                                        @endphp
+
                                                         Subject : {{ $value['subject_name'] }}
+                                                        Class : {{ $value['class_name'] }}
                                                     </td>
                                                 @elseif ($value === 1)
                                                     <td></td>

@@ -212,7 +212,7 @@ return [
 
     'calendar' => [
         'start_time'    => '08:00',
-        'end_time'      => '18:00',
+        'end_time'      => '23:00',
     ],
     'aliases' => Facade::defaultAliases()->merge([
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,

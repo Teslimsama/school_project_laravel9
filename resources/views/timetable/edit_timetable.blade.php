@@ -26,14 +26,16 @@
                                     <div class="col-12">
                                         <h5 class="form-title"><span>Time Table</span></h5>
                                     </div>
-                                     <div class="col-12 col-sm-4">
+                                    <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Teacher Name <span class="login-danger">*</span></label>
                                             <select id="teacher" name="teacher" class="form-control select">
-                                                <option value="">Select Teacher</option>
+                                                @foreach ($teachers as $teacher)
+                                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                    </div><input type="hidden" name="id" value="{{$TimetableEdit->id}}">
+                                    </div><input type="hidden" name="id" value="{{ $TimetableEdit->id }}">
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Subject <span class="login-danger">*</span></label>
@@ -46,7 +48,7 @@
                                         <div class="form-group local-forms">
                                             <label>Class <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="class">
-                                                <option selected>{{$TimetableEdit->class}}</option>
+                                                <option selected>{{ $TimetableEdit->class }}</option>
                                                 <option>LKG</option>
                                                 <option>UKG</option>
                                                 <option>1</option>
@@ -68,7 +70,7 @@
                                         <div class="form-group local-forms">
                                             <label>Day <span class="login-danger">*</span></label>
                                             <select class="form-control select" name="day">
-                                                <option selected>{{$TimetableEdit->event_date}}</option>
+                                                <option selected>{{ $TimetableEdit->event_date }}</option>
                                                 <option>Monday</option>
                                                 <option>Tuesday</option>
                                                 <option>Wednesday</option>
@@ -82,7 +84,8 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Start Time <span class="login-danger">*</span></label>
-                                            <input type="time" value="{{$TimetableEdit->event_time}}" name="time" class="form-control">
+                                            <input type="time" value="{{ $TimetableEdit->event_time }}" name="time"
+                                                class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -100,30 +103,31 @@
     </div>
 @section('script')
     <script>
-        $(document).ready(function() {
-            // Fetch subjects and classes on page load
+        function __getTeacherSubjects(teacherId) {
             $.ajax({
-                url: '/get_subjects_teacher',
+                url: '/get_teacher_subjects/' + teacherId,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
+                    console.log(data)
                     var subjectSelect = $('#subject');
                     subjectSelect.empty();
                     subjectSelect.append('<option value="">Select subject</option>');
                     $.each(data.subjects, function(id, name) {
-                        subjectSelect.append('<option value="' + name + '">' + name +
-                            '</option>');
-                    });
-
-                    var teacherSelect = $('#teacher');
-                    teacherSelect.empty();
-                    teacherSelect.append('<option value="">Select teacher</option>');
-                    $.each(data.teachers, function(id, name) {
-                        teacherSelect.append('<option value="' + name + '">' + name +
+                        subjectSelect.append('<option value="' + name + '">' +
+                            name +
                             '</option>');
                     });
                 }
             });
+        }
+
+        __getTeacherSubjects($("#teacher").val())
+        $(document).ready(function() {
+            $("#teacher").change(function() {
+                __getTeacherSubjects($(this).val());
+
+            })
         });
     </script>
 @endsection
